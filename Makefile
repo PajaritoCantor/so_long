@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2024/10/05 18:07:31 by jurodrig         ###   ########.fr        #
+#    Updated: 2024/10/14 12:49:33 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,17 +28,15 @@ INC_DIR = inc
 MAP_DIR = $(SRCS_DIR)/map
 
 SRCS =	$(MAP_DIR)/read_map.c		\
-		$(MAP_DIR)/init_map.c		\
-		$(MAP_DIR)/open_file.c		\
-		$(MAP_DIR)/free_map.c		\
-		$(MAP_DIR)/read_file.c		\
+		$(MAP_DIR)/init_file.c		\
 		$(MAP_DIR)/validate_map.c	\
-		$(MAP_DIR)/fill_matrix.c	\
 
 OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+MLX_FLAGS = -lXext -lX11 -lm -lbsd
+MLX_PATH = libft/libf.a
 CFLAGS += -I $(INC_DIR) -I $(LIBFT_DIR)
 
 all: $(NAME)
