@@ -2,7 +2,7 @@
 
 * **Orden de desarrollo de funciones**
 
-1. **Leer el archivo .ber:**
+1. **Leer el archivo .ber:** // Usar gnl propio
 * **read_map():** Leer el archivo y guardarlo en un array 2D.
 *  **validate map():** Validar la estructura del mapa (rectangular, cerrado, etc.)
 
