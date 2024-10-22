@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/14 12:55:13 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:00:39 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_vars
     t_game_map  *game;
     int     win_width;
     int     win_height;
-    int     wall_img;
+    int    wall_img;
 }   t_vars;
 
 bool        check_ber(char *argv);
