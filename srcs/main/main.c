@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:33:15 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/23 09:02:33 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:00:25 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     t_vars vars;
     t_game_map *game;
 
-    if (argv != 2)
+    if (argc != 2)
         ft_printfd(2, "Error\nUsage: ./so_long [map.ber], 36");
     if (!argv[1])
         ft_printfd(2, "Error\nInvalid map file", 22);
