@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+         #
+#    By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2024/10/21 19:57:13 by danpalac         ###   ########.fr        #
+#    Updated: 2024/10/23 11:02:56 by danpalac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,13 @@ OBJS_DIR		:= objs/
 LIBFT_DIR		:= libft/
 MLX_DIR			:= minilibx-linux/
 
+GAME_DIR		:= game/
+HOOK_DIR		:= hook/
+MAIN_DIR		:= main/
 MAP_DIR			:= map/
 RENDER_DIR		:= render/
 GRAFIC_DIR		:= grafic/
-HOOK_DIR		:= hook/
 UTILS_DIR		:= utils/
-GAME_DIR		:= game/
 GRAFIC_DIR		:= grafic/
 
 #==============================VARIABLES=============================================#
@@ -52,21 +53,24 @@ IFLAGS	= -I$(INC) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 #==============================SOURCES============================================#
 
+GAME_FILES		:= init_game check
+HOOK_FILES		:= input control
+MAIN_FILES		:= main
 MAP_FILES		:= init_file read_map validate_map 
-GAME_FILES		:= init_game main check
-RENDER_FILES	:= render_tile
-UTILS_FILES		:= check_ber
-HOOK_FILES		:= 
+RENDER_FILES	:= render_tile render_map
+UTILS_FILES		:= 
 GRAFIC_FILES	:=
 
 # ==============================FILES============================================#
 
-SRCS_FILES+=$(addprefix $(MAP_DIR), $(MAP_FILES))
-SRCS_FILES+=$(addprefix $(RENDER_DIR), $(RENDER_FILES))
+SRCS_FILES+=$(addprefix $(GAME_DIR), $(GAME_FILES))
 SRCS_FILES+=$(addprefix $(GRAFIC_DIR), $(GRAFIC_FILES))
 SRCS_FILES+=$(addprefix $(HOOK_DIR), $(HOOK_FILES))
+SRCS_FILES+=$(addprefix $(MAIN_DIR), $(MAIN_FILES))
+SRCS_FILES+=$(addprefix $(MAP_DIR), $(MAP_FILES))
+SRCS_FILES+=$(addprefix $(RENDER_DIR), $(RENDER_FILES))
 SRCS_FILES+=$(addprefix $(UTILS_DIR), $(UTILS_FILES))
-SRCS_FILES+=$(addprefix $(GAME_DIR), $(GAME_FILES))
+
 
 SRCS		:= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		:= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
