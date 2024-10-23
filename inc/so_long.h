@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/22 16:00:39 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/23 09:02:15 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_vars
     t_game_map  *game;
     int     win_width;
     int     win_height;
-    int    wall_img;
+    void    *wall_img;
 }   t_vars;
 
 bool        check_ber(char *argv);
@@ -62,8 +62,12 @@ int         validate_map(t_game_map *map);
 int         is_map_surrounded_by_walls(t_game_map *map);
 int         is_rectangular(t_game_map *map);
 
+bool   check_ber(char *argv);
+void    check_valid_map(t_game_map *game);
 void    init_game(t_vars *vars, t_game_map *game);
+//void    render_map(t_vars *vars, t_game_map *game);
+
+void    render_tile(t_vars *vars, int x, int y, char tile);
 void    render_map(t_vars *vars, t_game_map *game);
-void    draw_tile(t_vars *vars, int x, int y, char *texture_path);
 
 #endif 

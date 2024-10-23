@@ -6,18 +6,11 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:41:11 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/22 16:00:49 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/22 22:14:46 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void    render_tile(t_vars *vars, int x, int y, char tile)
-{
-    if (tile == '1')
-        mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->wall_img, x, y);
-        
-}
 
 void    init_game(t_vars *vars, t_game_map *game)
 {

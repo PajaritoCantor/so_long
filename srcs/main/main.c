@@ -5,38 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 05:25:19 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/17 12:06:17 by jurodrig         ###   ########.fr       */
+/*   Created: 2024/10/22 17:33:15 by jurodrig          #+#    #+#             */
+/*   Updated: 2024/10/23 09:02:33 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool   check_ber(char *argv)
-{
-    char    *save;
-
-    save = ft_strrchr(argv, '.');
-    if (save)
-        return (ft_strncmp(save + 1, "ber", 3) == 0);
-    return (0);
-}
-
-
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
     t_vars vars;
-    t_game_map  game;
+    t_game_map *game;
 
-    if (argc != 2 && check_ber(argv))
-        ft_printfd(2, "Invalid numb of argcs");
-    if (argc == 2 && !(check_ber(argv)))
-        ft_printfd(2, "Invalide file");
-    if (argc && check_ber(argv))
-        {
-            vars.game = &game;
-            read_map(argv[1]);
-            validate_map(&game);
-            init_game(&vars, &game);
-        }
+    if (argv != 2)
+        ft_printfd(2, "Error\nUsage: ./so_long [map.ber], 36");
+    if (!argv[1])
+        ft_printfd(2, "Error\nInvalid map file", 22);
+    exit(0);
+    if (!check_ber(argv[1]))
+        ft_printfd(2, "Error\nInvalid map file", 22);
+    game = NULL;
+    game = read_map(argv[1]);
+    if (!game)
+        ft_printfd(2, "Error\nReading map", 15);
+    exit(0);
+    init_game(&vars, game);
+    mlx_loop(vars.mlx);
+    free_map(game);
+    return (0);
 }
