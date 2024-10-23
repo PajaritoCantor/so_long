@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 05:25:19 by jurodrig          #+#    #+#             */
 /*   Updated: 2024/10/23 09:02:32 by jurodrig         ###   ########.fr       */
@@ -22,7 +22,7 @@ bool   check_ber(char *argv)
     return (0);
 }
 
-void    check_valid_map(t_game_map *game)
+void	check_valid_map(t_game_map *game)
 {
     validate_map(game);
     is_map_surrounded_by_walls(game);
