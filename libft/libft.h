@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:35:12 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/08/29 12:46:07 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:00:23 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	**ft_split(const char *s, char c);
 char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
+ void	*ft_free_strs(char **strs);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-void	ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
@@ -88,12 +88,13 @@ int		ft_putchar_printf(int fd, int c);
 int		ft_putstr_printf(int fd, char *str);
 int		ft_strlen_printf(char *str);
 
-int		ft_putnbr_base(int fd, size_t nbr, char *b);
+int		ft_putnbr_base(int fd, unsigned long nbr, char *b);
 int		ft_putnbr(int fd, int n);
 int		ft_pointer(int fd, void *p);
 // minitalk functions
 
-void	ft_print_error(char *error_msg);
+int	ft_error(char *error_msg, int y);
+int	ft_success(char *msg, int y);
 // Funciones de Listas Enlazadas
 typedef struct s_list
 {

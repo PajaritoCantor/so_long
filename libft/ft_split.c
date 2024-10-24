@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:24:35 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/07/09 13:36:34 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:59:30 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,16 @@ static int	ft_countwords(char const *s, char c)
 	return (count);
 }
 
-static void	*ft_free_strs(char **strs)
+void	*ft_free_strs(char **strs)
 {
 	int	i;
 
 	i = 0;
 	while (strs[i])
-		free(strs[i++]);
+	{
+		free(strs[i]);
+		i++;
+	}
 	free(strs);
 	return (NULL);
 }

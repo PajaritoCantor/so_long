@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/23 11:05:03 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/10/23 20:09:00 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@
 # define COLLECTIBLE_TEXTURE "texture/collectibe.xpm"
 # define EXIT_TEXTURE "textures/exit.xpm"
 # define TILE_SIZE 32
+
+// mensajes para usar en ft_error y ft_success
+# define USAGE "Error\nUsage: ./so_long [map.ber], 36"
+# define ERROR_MAP "Error\nInvalid map"
+# define ERROR_MAP_READ "Reading map\n"
+# define ERROR_MLX "Error initialing MLX"
+# define ERROR_WINDOW "Error creating window"
+# define SUCCESS "\033[1;32m✅ Success: Funtion finished well!\n\033[0m" // Verde
+# define ERROR "\033[1;31m❌ Error: Error in function!\n\033[0m" // Rojo
+# define WARNING "\033[1;33m⚠️ Warning: Warning in function!\n\033[0m"
 
 typedef struct s_map
 {
@@ -51,7 +61,7 @@ typedef struct s_vars
 }				t_vars;
 
 bool			check_ber(char *argv);
-
+void			ft_print_game(t_game_map *map);
 t_game_map		*read_map(char *file_path);
 t_game_map		*init_map(void);
 void			free_map(t_game_map *map);
@@ -65,7 +75,7 @@ int				is_map_surrounded_by_walls(t_game_map *map);
 int				is_rectangular(t_game_map *map);
 
 void			move_player(t_vars *vars, int x_offset, int y_offset);
-void			init_game(t_vars *vars, t_game_map *game);
+int				init_game(t_vars *vars, t_game_map *game);
 void			render_map(t_vars *vars, t_game_map *game);
 void			draw_tile(t_vars *vars, int x, int y, char *texture_path);
 

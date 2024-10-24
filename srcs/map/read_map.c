@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 09:29:28 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/22 15:57:57 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/23 19:28:55 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,25 @@ t_game_map	*init_map(void)
 	map = ft_calloc (1, sizeof(t_game_map));
 	if (!map)
 		return (NULL);
-	ft_memset(map, 0, sizeof(t_game_map));
 	return (map);
 }
 
 void	free_map(t_game_map *map)
 {
-	char	**matrix;
 	int		rows;
 
 	if (!map)
 		return ;
-	matrix = map->matrix;
 	rows = map->rows;
-	if (rows > 0)
+	if (map->matrix)
 	{
-		free(matrix[--rows]);
+		while (rows > 0)
+		{
+			free(map->matrix[--rows]);
+		}
+		free(map->matrix);
 	}
-	free(matrix);
-	free(map);
+		free(map);
 }
 
 int	fill_matrix(t_game_map *map, char **lines)
@@ -56,6 +56,13 @@ int	fill_matrix(t_game_map *map, char **lines)
 	while (i < new_rows)
 	{
 		new_matrix[i] = ft_strdup(lines[i]);
+		if (!new_matrix[i])
+		{
+			while (--i >= 0)
+				free(new_matrix[i]);
+			free(new_matrix);
+			return (0);
+		}
 		i++;
 	}
 	new_matrix[new_rows] = NULL;
@@ -64,7 +71,7 @@ int	fill_matrix(t_game_map *map, char **lines)
 	map->rows = new_rows;
 	return (1);
 }
-
+// es una buena practica hacer que devuelva NULL porque asi en el otro lado puedes comprobar si funciono la funcion o no; con (!variable);
 t_game_map	*read_map(char	*file_path)
 {
 	int			fd;
@@ -77,7 +84,7 @@ t_game_map	*read_map(char	*file_path)
 		return (NULL);
 	fd = open_file(file_path);
 	if (fd < 0)
-		return (free_map(map), NULL);
+		return (free_map(map), NULL); 
 	file_content = read_file(fd);
 	close(fd);
 	if (!file_content)
@@ -87,8 +94,8 @@ t_game_map	*read_map(char	*file_path)
 	if (!lines)
 		return (free_map(map), NULL);
 	if (!fill_matrix(map, lines))
-		return (free(lines), free_map(map), NULL);
-	free(lines);
+		return (ft_free_strs(lines), free_map(map), NULL);
+	ft_free_strs(lines);
 	if (!validate_map(map))
 		return (free_map(map), NULL);
 	return (map);

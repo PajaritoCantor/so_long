@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 23:13:36 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/22 15:58:03 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:59:07 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*read_and_extr(char *line_text, char *buffer_tmp, int *eol_loc, int fd)
 			return (NULL);
 		}
 		line_length = find_eol_position(buffer);
-		ft_strlcpy_gnl(buffer_tmp, &buffer[line_length], (BUFFER_SIZE + 1));
+		ft_strlcpy(buffer_tmp, &buffer[line_length], (BUFFER_SIZE + 1));
 		buffer[line_length] = '\0';
 		line_text = ft_strjoin_gnl(line_text, buffer, eol_loc);
 		if (bytes_read == 0)
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 	line_text = init_stash_line(buffer_tmp, &eol_loc);
 	if (!line_text)
 		return (NULL);
-	ft_strlcpy_gnl(buffer_tmp, &buffer_tmp[eol_loc + 1], BUFFER_SIZE + 1);
+	ft_strlcpy(buffer_tmp, &buffer_tmp[eol_loc + 1], BUFFER_SIZE + 1);
 	line_text = read_and_extr(line_text, buffer_tmp, &eol_loc, fd);
 	if (!line_text || line_text[0] == '\0')
 	{

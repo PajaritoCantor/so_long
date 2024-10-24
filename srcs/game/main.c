@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
 	game = NULL;
 	game = read_map(argv[1]);
 	if (!game)
-		ft_printfd(2, "Error\nReading map", 15);
+		ft_printfd(2, "Error \n Reading map", 15);
 	exit(0);
 	init_game(&vars, game);
 	mlx_loop(vars.mlx);
