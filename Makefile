@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+         #
+#    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2024/10/23 11:02:56 by danpalac         ###   ########.fr        #
+#    Updated: 2024/10/24 23:34:55 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ MLX_LINUX	= $(MLX_DIR)libmlx_Linux.a
 #===============================COMPILER============================================#
 
 CC		= gcc
-CFLAGS	= -Wextra -Werror -Wall -g3 -fsanitize=address
+CFLAGS	= -Wextra -Werror -Wall -g3 -fsanitize=address -I inc
 LDFLAGS	= -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -lm -lbsd
 MKDIR	= mkdir -p
 IFLAGS	= -I$(INC) -I$(LIBFT_DIR) -I$(MLX_DIR)
@@ -58,7 +58,6 @@ HOOK_FILES		:= input control
 MAIN_FILES		:= main
 MAP_FILES		:= init_file read_map validate_map 
 RENDER_FILES	:= render_tile render_map
-UTILS_FILES		:= 
 GRAFIC_FILES	:=
 
 # ==============================FILES============================================#
@@ -69,8 +68,6 @@ SRCS_FILES+=$(addprefix $(HOOK_DIR), $(HOOK_FILES))
 SRCS_FILES+=$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 SRCS_FILES+=$(addprefix $(MAP_DIR), $(MAP_FILES))
 SRCS_FILES+=$(addprefix $(RENDER_DIR), $(RENDER_FILES))
-SRCS_FILES+=$(addprefix $(UTILS_DIR), $(UTILS_FILES))
-
 
 SRCS		:= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		:= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
@@ -89,7 +86,7 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c Makefile
 $(NAME): $(MLX) $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@echo "\n$(GREEN)$(NAME)✓ compiled!$(DEF_COLOR)"
-	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------$(DEF_COLOR)"
+	@echo "$(BOLD_CYAN)\n------------\n| Ready! 👌 |\n------------$(DEF_COLOR)"
 
 $(LIBFT):
 	@make -sC $(LIBFT_DIR)

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:33:15 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/23 20:03:10 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/25 02:09:16 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     if (!game)
         ft_error(ERROR_MAP_READ, 1);
     ft_print_game(game);
-    if (!validate_map(game))
+    if (validate_map(game))
         free_map(game);
     if (!init_game(&vars, game))
     {

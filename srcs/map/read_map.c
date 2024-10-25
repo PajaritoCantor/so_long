@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 09:29:28 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/23 19:28:55 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/25 02:21:38 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ t_game_map	*init_map(void)
 	map = ft_calloc (1, sizeof(t_game_map));
 	if (!map)
 		return (NULL);
+	map->matrix = NULL;
+	map->rows = 0;
+	map->cols = 0;
+	map->num_players = 0;
+	map->num_collectibles = 0;
 	return (map);
 }
 
@@ -85,7 +90,7 @@ t_game_map	*read_map(char	*file_path)
 	fd = open_file(file_path);
 	if (fd < 0)
 		return (free_map(map), NULL); 
-	file_content = read_file(fd);
+	file_content = get_next_line(fd);
 	close(fd);
 	if (!file_content)
 		return (free_map(map), NULL);

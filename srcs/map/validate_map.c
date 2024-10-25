@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 01:37:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/24 12:25:04 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/25 02:22:09 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int check_valid_characters(t_game_map *map)
     char    c;
 
     row = 0;
-    while (col < map->cols)
+    while (row < map->cols)
     {
         col = 0;
         while (col < map->cols)
         {
             c = map->matrix[row][col];
-            if (c != '#' && c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
+            if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
                 return (0);
             col++;
         }
@@ -59,17 +59,24 @@ int is_map_surrounded_by_walls(t_game_map *map)
     col = 0;
     while (col < map->cols)
     {
-        if (map->matrix[0][col] != '#' || map->matrix[map->rows - 1][col] != '#')
+        if (map->matrix[0][col] != '1' || map->matrix[map->rows - 1][col] != '1')
+        {
+            printf("Error: top or bot no surrounded by walls.\n");
             return (0);
+        }
         col++;
     }
     row = 0;
     while (row < map->rows)
     {
-        if (map->matrix[row][0] != '#' || map->matrix[row][map->cols - 1] != '#')
+        if (map->matrix[row][0] != '1' || map->matrix[row][map->cols - 1] != '1')
+        {
+            printf("Error: left or right no surrounded by walls.\n");
             return (0);
+        }
         row++;
     }
+    printf("El mapa está correctamente rodeado por muros.\n");
     return (1);
 }
 
