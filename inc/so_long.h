@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/24 23:46:13 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:49:09 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,20 @@ typedef struct s_vars
 }				t_vars;
 
 bool			check_ber(char *argv);
+void			check_valid_map(t_game_map *game);
 void			ft_print_game(t_game_map *map);
+
 t_game_map		*read_map(char *file_path);
 t_game_map		*init_map(void);
 void			free_map(t_game_map *map);
 int				open_file(char *file_path);
-char			*read_file(int fd);
-int				fill_matrix(t_game_map *map, char **lines);
 
+int 			set_map_data(t_game_map *map, char **lines);
+int 			count_lines(char **lines);
+int 			allocate_matrix(char ***new_matrix, int new_rows);
 void			render_tile(t_vars *vars, int x, int y, char tile);
+void    		free_new_matrix(char **new_matrix, int filled_rows);
+
 int				validate_map(t_game_map *map);
 int				is_map_surrounded_by_walls(t_game_map *map);
 int				is_rectangular(t_game_map *map);

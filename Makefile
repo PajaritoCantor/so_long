@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2024/10/24 23:34:55 by jurodrig         ###   ########.fr        #
+#    Updated: 2024/10/28 19:07:15 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ MLX_LINUX	= $(MLX_DIR)libmlx_Linux.a
 #===============================COMPILER============================================#
 
 CC		= gcc
-CFLAGS	= -Wextra -Werror -Wall -g3 -fsanitize=address -I inc
+CFLAGS	= -Wextra -Werror -Wall -g3 #-fsanitize=address -I inc
 LDFLAGS	= -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -lm -lbsd
 MKDIR	= mkdir -p
 IFLAGS	= -I$(INC) -I$(LIBFT_DIR) -I$(MLX_DIR)
@@ -56,18 +56,18 @@ IFLAGS	= -I$(INC) -I$(LIBFT_DIR) -I$(MLX_DIR)
 GAME_FILES		:= init_game check
 HOOK_FILES		:= input control
 MAIN_FILES		:= main
-MAP_FILES		:= init_file read_map validate_map 
+MAP_FILES		:= read_map set_map_data validate_map
 RENDER_FILES	:= render_tile render_map
 GRAFIC_FILES	:=
 
 # ==============================FILES============================================#
 
 SRCS_FILES+=$(addprefix $(GAME_DIR), $(GAME_FILES))
-SRCS_FILES+=$(addprefix $(GRAFIC_DIR), $(GRAFIC_FILES))
 SRCS_FILES+=$(addprefix $(HOOK_DIR), $(HOOK_FILES))
 SRCS_FILES+=$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 SRCS_FILES+=$(addprefix $(MAP_DIR), $(MAP_FILES))
 SRCS_FILES+=$(addprefix $(RENDER_DIR), $(RENDER_FILES))
+SRCS_FILES+=$(addprefix $(GRAFIC_DIR), $(GRAFIC_FILES))
 
 SRCS		:= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		:= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
