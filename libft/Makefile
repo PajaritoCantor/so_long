@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 19:52:46 by jurodrig          #+#    #+#              #
-#    Updated: 2024/09/25 00:12:34 by jurodrig         ###   ########.fr        #
+#    Updated: 2024/10/30 18:22:29 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS    =	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
             	ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
 		ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c \
             	ft_printf.c ft_printf_fd_utils.c ft_putnbr_base.c \
-		get_next_line.c ft_print_error.c
+		get_next_line.c ft_print_error.c ft_putstr.c ft_putchar.c
 OBJS    =   $(SRCS:.c=.o)
 
 $(NAME):	$(OBJS)

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:02:46 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/28 18:39:01 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/30 23:35:28 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ int count_lines(char **lines)
 
 int set_map_data(t_game_map *map, char **lines)
 {
-    char **new_matrix;
-    int new_rows;
-    int i;
+    char    **new_matrix;
+    int     new_rows;
+    int     i;
 
-    if (!lines)
+    if (!lines || !lines[0])
         return (0);
+
     new_rows = count_lines(lines);
     if (!allocate_matrix(&new_matrix, new_rows))
         return (0);
+
     i = 0;
     while (i < new_rows)
     {
@@ -53,13 +55,31 @@ int set_map_data(t_game_map *map, char **lines)
         if (!new_matrix[i])
         {
             free_new_matrix(new_matrix, i);
+            free(map->matrix);
             return (0);
         }
         i++;
     }
     new_matrix[new_rows] = NULL;
+
     free(map->matrix);
     map->matrix = new_matrix;
     map->rows = new_rows;
+
+    // Impresiones de Depuración
+    if (new_matrix != NULL) {
+        if (new_matrix[0] != NULL) {
+            map->cols = ft_strlen(new_matrix[0]);
+            printf("map->cols se ha establecido correctamente a %d\n", map->cols);
+        } else {
+            printf("new_matrix[0] es NULL\n");
+            map->cols = 0;
+        }
+    } else {
+        printf("new_matrix es NULL\n");
+        map->cols = 0;
+    }
+
     return (1);
 }
+

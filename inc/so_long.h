@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/28 18:49:09 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/30 18:32:17 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,12 @@ bool			check_ber(char *argv);
 void			check_valid_map(t_game_map *game);
 void			ft_print_game(t_game_map *map);
 
-t_game_map		*read_map(char *file_path);
-t_game_map		*init_map(void);
-void			free_map(t_game_map *map);
-int				open_file(char *file_path);
+t_game_map	*read_map(char *file_path);
+t_game_map	*init_map(void);
+t_game_map	*cleanup(t_game_map *map, char **lines);
+char		*read_all_lines(char *file_path);
+void		free_map(t_game_map *map);
+int 		verificity_ber(char *file_name);
 
 int 			set_map_data(t_game_map *map, char **lines);
 int 			count_lines(char **lines);

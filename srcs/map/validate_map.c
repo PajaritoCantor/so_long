@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 01:37:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/28 18:48:04 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:33:20 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int is_rectangular(t_game_map *map)
 
     expected_length = ft_strlen(map->matrix[0]);
     row = 0;
-
     while (row < map->rows)
     {
         if (ft_strlen(map->matrix[row]) != expected_length)
@@ -33,15 +32,18 @@ int check_valid_characters(t_game_map *map)
 {
     int row;
     int col;
-    char    c;
+    char c;
 
     row = 0;
-    while (row < map->cols)
+    while (row < map->rows)
     {
+        if (!map->matrix[row])  // Verificación de punteros nulos
+            return (0);
+
         col = 0;
         while (col < map->cols)
         {
-            c = map->matrix[row][col];
+            c = map->matrix[row][col];  // Línea 43
             if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
                 return (0);
             col++;
@@ -53,19 +55,17 @@ int check_valid_characters(t_game_map *map)
 
 int is_map_surrounded_by_walls(t_game_map *map)
 {
-    int col;
-    int row;
-
-    if (map->rows <= 0 || map->cols <= 0 || map->matrix)
+    if (map->rows <= 0 || map->cols <= 0 || !map->matrix)
         return (0);
-    col = 0;
+
+    int col = 0;
     while (col < map->cols)
     {
         if (map->matrix[0][col] != '1' || map->matrix[map->rows - 1][col] != '1')
             return (0);
         col++;
     }
-    row = 0;
+    int row = 0;
     while (row < map->rows)
     {
         if (map->matrix[row][0] != '1' || map->matrix[row][map->cols - 1] != '1')
@@ -74,6 +74,7 @@ int is_map_surrounded_by_walls(t_game_map *map)
     }
     return (1);
 }
+
 
 int validate_map(t_game_map *map)
 {

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:35:12 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/25 02:12:24 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/30 18:22:21 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 // Funciones de Entrada y Salida
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
+int		ft_putchar(char c);
 void	ft_putstr_fd(char *s, int fd);
+int		ft_putstr(char *s);
 void	ft_putendl_fd(char *s, int fd);
 
 int		ft_printf(const char *string, ...);
