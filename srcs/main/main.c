@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:33:15 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/30 21:07:15 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/31 11:51:54 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    print_map(t_game_map *map)
 
 int main(int argc, char *argv[])
 {
-    t_game_map  *map;
+    t_game_map *map;
 
     if (argc != 2)
     {
@@ -39,19 +39,14 @@ int main(int argc, char *argv[])
         ft_printfd(2, "Error\n Not valid extension\n", 28);
         return (1);
     }
-    map = init_map();  // Llamada a la función init_map y asignación del valor retornado
+    map = read_map(argv[1]);
     if (!map)
     {
-       ft_printfd(2, "Error\n Failed to initialize map\n", 34);
-        return (1);
-    }
-    if (!read_map(argv[1]))
-    {
         ft_printfd(2, "Error\n Reading map failed\n", 28);
-        free_map(map);  // Asegúrate de liberar la memoria asignada
         return (1);
     }
     print_map(map);
     free_map(map);
+    printf("main: map successfully freed\n");
     return (0);
 }

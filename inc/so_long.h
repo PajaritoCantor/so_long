@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/30 18:32:17 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/31 10:08:11 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,11 @@ void		free_map(t_game_map *map);
 int 		verificity_ber(char *file_name);
 
 int 			set_map_data(t_game_map *map, char **lines);
+int 			duplicate_lines(char **matrix, char **lines, int rows, t_game_map *map);
+int 			allocate_lines(char ***matrix, char **lines, int *rows);
+void    		free_matrix(char **new_matrix, int filled_rows);
 int 			count_lines(char **lines);
-int 			allocate_matrix(char ***new_matrix, int new_rows);
-void			render_tile(t_vars *vars, int x, int y, char tile);
-void    		free_new_matrix(char **new_matrix, int filled_rows);
+int				allocate_matrix(char ***matrix, int rows);
 
 int				validate_map(t_game_map *map);
 int				is_map_surrounded_by_walls(t_game_map *map);
@@ -91,5 +92,5 @@ void			move_player(t_vars *vars, int x_offset, int y_offset);
 int				init_game(t_vars *vars, t_game_map *game);
 void			render_map(t_vars *vars, t_game_map *game);
 void			draw_tile(t_vars *vars, int x, int y, char *texture_path);
-
+void			render_tile(t_vars *vars, int x, int y, char tile);
 #endif
