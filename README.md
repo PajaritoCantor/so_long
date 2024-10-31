@@ -23,4 +23,3 @@
 
 6. **Mensaje de error:**
 * **error_message():** Muestra los errores con mensajes adecuados.
-
