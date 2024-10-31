@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:33:15 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/31 11:51:54 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:04:54 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ int main(int argc, char *argv[])
     }
     print_map(map);
     free_map(map);
-    printf("main: map successfully freed\n");
     return (0);
 }

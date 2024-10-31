@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:02:46 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/31 11:03:20 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:02:34 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int duplicate_lines(char **new_matrix, char **lines, int rows, t_game_map *map)
             free(map->matrix);
             return (0);
         }
-        printf("duplicate_lines: copied row %d\n", i);
         i++;
     }
     return (1);

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 09:29:28 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/31 11:50:54 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:04:34 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_game_map	*init_map(void)
 	map = ft_calloc (1, sizeof(t_game_map));
 	if (!map)
 		return (NULL);
-	printf("init_map: map created\n");
 	map->matrix = NULL;
 	map->rows = 0;
 	map->cols = 0;
@@ -34,7 +33,6 @@ void	free_map(t_game_map *map)
 		return ;
 	if (map->matrix)
 		free_matrix(map->matrix, map->rows);
-    printf("free_map: freeing map\n");
 	free(map);
 }
 
@@ -86,37 +84,17 @@ t_game_map *read_map(char *file_path)
     char **lines;
 
     map = init_map();
-    if (!map) 
-    {
-        printf("read_map: init_map failed\n");
+    if (!map)
         return (NULL);
-    }
-    printf("read_map: init_map successful\n");
     content = read_all_lines(file_path);
-    if (!content) 
-    {
-        printf("read_map: read_all_lines failed\n");
-        free_map(map);
-        return (NULL);
-    }
-    printf("read_map: read_all_lines successful\n");
+    if (!content)
+        return (free_map(map), NULL);
     lines = ft_split(content, '\n');
     free(content);
-    if (!lines) 
-    {
-        printf("read_map: ft_split failed\n");
-        free_map(map);
-        return (NULL);
-    }
-    printf("read_map: ft_split successful\n");
-    if (!set_map_data(map, lines)) {
-        printf("read_map: set_map_data failed\n");
-        ft_free_strs(lines);
-        free_map(map);
-        return (NULL);
-    }
-    printf("read_map: set_map_data successful\n");
+    if (!lines)
+        return (free_map(map), NULL);
+    if (!set_map_data(map, lines))
+        return (ft_free_strs(lines), free_map(map), NULL);
     ft_free_strs(lines);
-    printf("read_map: completed successful\n");
     return (map);
 }
