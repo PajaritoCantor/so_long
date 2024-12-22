@@ -5,61 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 16:02:46 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/31 12:02:34 by jurodrig         ###   ########.fr       */
+/*   Created: 2024/12/21 01:32:30 by jurodrig          #+#    #+#             */
+/*   Updated: 2024/12/22 14:52:57 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int allocate_lines(char ***matrix, char **lines, int *rows)
+int	count_lines(char **lines)
 {
-    *rows = count_lines(lines);
-    if (!allocate_matrix(matrix, *rows))
-        return (0);
-    return (1);
-} 
+	int	count;
 
-int duplicate_lines(char **new_matrix, char **lines, int rows, t_game_map *map)
-{
-    int i;
-
-    i = 0;
-    while (i < rows)
-    {
-        new_matrix[i] = ft_strdup(lines[i]);
-        if (!new_matrix[i])
-        {
-            printf("duplicate_lines: failed at row %d\n", i);
-            free_matrix(new_matrix, i);
-            free(map->matrix);
-            return (0);
-        }
-        i++;
-    }
-    return (1);
+	count = 0;
+	while (lines[count])
+		count++;
+	return (count);
 }
-
-int set_map_data(t_game_map *map, char **lines)
+int	allocate_matrix(char ***map_matrix, int map_rows)
 {
-    char    **new_matrix;
-    int     new_rows;
-
-    if (!lines || !lines[0])
-        return (0);
-    if (!allocate_lines(&new_matrix, lines, &new_rows))
-        return (0);
-    if (!duplicate_lines(new_matrix, lines, new_rows, map))
-        return (0);
-    new_matrix[new_rows] = NULL;
-    free(map->matrix);
-    map->matrix = new_matrix;
-    map->rows = new_rows;
-
-    if (new_matrix[0] != NULL)
-        map->cols = ft_strlen(new_matrix[0]);
-    else
-        map->cols = 0;
-    return (1);
+	*map_matrix = ft_calloc(map_rows + 1, sizeof(char *));
+	return (*map_matrix != NULL);
 }
+int	allocate_lines(char ***map_matrix, char **lines, int *map_rows)
+{
+	*map_rows = count_lines(lines);
+	if (!allocate_matrix(map_matrix, *map_rows))
+		return (0);
+	return (1);
+}
+int	copy_lines_to_matrix(char **map_matrix, char **lines, int map_rows,
+		t_game_map *map)
+{
+	int	i;
 
+	i = 0;
+	while (i < map_rows)
+	{
+		map_matrix[i] = ft_strdup(lines[i]);
+		if (!map_matrix[i])
+		{
+			ft_printf("duplicate_lines: failed at row %d\n", i);
+			free_matrix(map_matrix, i);
+			free(map->matrix);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+int	set_map_data(t_game_map *map, char **lines)
+{
+	char **map_matrix;
+	int map_rows;
+
+	if (!lines || !lines[0])
+		return (0);
+	if (!allocate_lines(&map_matrix, lines, &map_rows))
+	{
+		ft_printfd(1, "Error, Memory allocation failed\n");
+		return (0);
+	}
+	if (!copy_lines_to_matrix(map_matrix, lines, map_rows, map))
+		return (0);
+	map_matrix[map_rows] = NULL;
+	free(map->matrix);
+	map->matrix = map_matrix;
+	map->rows = map_rows;
+	if (map_matrix[0] != NULL)
+		map->cols = ft_strlen(map_matrix[0]);
+	else
+		map->cols = 0;
+	return (1);
+}

@@ -5,39 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 17:14:02 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/31 11:44:56 by jurodrig         ###   ########.fr       */
+/*   Created: 2024/12/21 01:01:29 by jurodrig          #+#    #+#             */
+/*   Updated: 2024/12/22 13:00:14 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_game_map *cleanup(t_game_map *map, char **lines)
+int	open_file(char *file_path)
 {
-	ft_free_strs(lines);
-	free_map(map);
-	return (NULL);
+	int	fd;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Error opening file");
+		return (-1);
+	}
+	return (fd);
 }
-
-void    free_matrix(char **matrix, int rows)
+void	freedom(void **p, void **p2)
 {
-    while (--rows >= 0)
-        free(matrix[rows]);
-    free(matrix);
+	if (p && *p)
+	{
+		free(*p);
+		*p = NULL;
+	}
+	if (p2 && *p2)
+	{
+		free(*p2);
+		*p2 = NULL;
+	}
 }
-
-int	allocate_matrix(char ***matrix, int new_rows)
+void	free_matrix(char **matrix, int rows)
 {
-	*matrix = ft_calloc(new_rows + 1, sizeof(char *));
-    return (*matrix != NULL);
+	while (--rows >= 0)
+		free(matrix[rows]);
+	free(matrix);
 }
-
-int count_lines(char **lines)
+void	free_map(t_game_map *map)
 {
-    int count;
-
-    count = 0;
-    while (lines[count])
-        count++;
-    return (count);
+	if (!map)
+		return ;
+	if (map->matrix)
+		free_matrix(map->matrix, map->rows);
+	free(map);
 }

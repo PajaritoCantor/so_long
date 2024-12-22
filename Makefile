@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2024/10/30 17:14:41 by jurodrig         ###   ########.fr        #
+#    Updated: 2024/12/22 19:24:00 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,11 +53,11 @@ IFLAGS	= -I$(INC) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 #==============================SOURCES============================================#
 
-GAME_FILES		:= init_game check
-HOOK_FILES		:= input control
+GAME_FILES		:= 
+HOOK_FILES		:= 
 MAIN_FILES		:= main
-MAP_FILES		:= read_map set_map_data validate_map utils_map
-RENDER_FILES	:= render_tile render_map
+MAP_FILES		:= read_map set_map_data utils_map validate_map
+RENDER_FILES	:= 
 GRAFIC_FILES	:=
 
 # ==============================FILES============================================#

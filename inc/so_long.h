@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/31 10:08:11 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/22 17:20:44 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define ERROR_MLX "Error initialing MLX"
 # define ERROR_WINDOW "Error creating window"
 # define SUCCESS "\033[1;32m✅ Success: Funtion finished well!\n\033[0m" // Verde
-# define ERROR "\033[1;31m❌ Error: Error in function!\n\033[0m" // Rojo
+# define ERROR "\033[1;31m❌ Error: Error in function!\n\033[0m"         // Rojo
 # define WARNING "\033[1;33m⚠️ Warning: Warning in function!\n\033[0m"
 
 # define WALL_TEXTURE "texture/Wall.xpm"
@@ -62,35 +62,35 @@ typedef struct s_vars
 	int			win_width;
 	int			win_height;
 	void		*wall_img;
-    int         player_x;
-    int         player_y;
+	void		*background_img;
+	void		*player_img;
+	void		*exit_img;
+	void		*caracter_img;
+	int			player_x;
+	int			player_y;
 }				t_vars;
 
-bool			check_ber(char *argv);
-void			check_valid_map(t_game_map *game);
-void			ft_print_game(t_game_map *map);
+void			freedom(void **p, void **p2);
+void			free_map(t_game_map *map);
+void			free_matrix(char **new_matrix, int filled_rows);
 
-t_game_map	*read_map(char *file_path);
-t_game_map	*init_map(void);
-t_game_map	*cleanup(t_game_map *map, char **lines);
-char		*read_all_lines(char *file_path);
-void		free_map(t_game_map *map);
-int 		verificity_ber(char *file_name);
-
-int 			set_map_data(t_game_map *map, char **lines);
-int 			duplicate_lines(char **matrix, char **lines, int rows, t_game_map *map);
-int 			allocate_lines(char ***matrix, char **lines, int *rows);
-void    		free_matrix(char **new_matrix, int filled_rows);
-int 			count_lines(char **lines);
+int				verificity_ber(char *file_name);
+void			print_map(t_game_map *map);
+// map
+t_game_map		*read_map(char *file_path);
+t_game_map		*init_map(void);
+char			*read_all_lines(char *file_path);
+int				open_file(char *file_path);
+int				set_map_data(t_game_map *map, char **lines);
+int				allocate_lines(char ***matrix, char **lines, int *rows);
+int				count_lines(char **lines);
 int				allocate_matrix(char ***matrix, int rows);
-
+int				copy_lines_to_matrix(char **matrix, char **lines, int rows,
+					t_game_map *map);
 int				validate_map(t_game_map *map);
-int				is_map_surrounded_by_walls(t_game_map *map);
 int				is_rectangular(t_game_map *map);
+int				is_map_surrounded_by_walls(t_game_map *map);
 
-void			move_player(t_vars *vars, int x_offset, int y_offset);
-int				init_game(t_vars *vars, t_game_map *game);
-void			render_map(t_vars *vars, t_game_map *game);
-void			draw_tile(t_vars *vars, int x, int y, char *texture_path);
-void			render_tile(t_vars *vars, int x, int y, char tile);
+t_game_map		*cleanup(t_game_map *map, char **lines);
+
 #endif

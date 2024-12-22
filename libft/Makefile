@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 19:52:46 by jurodrig          #+#    #+#              #
-#    Updated: 2024/10/30 18:22:29 by jurodrig         ###   ########.fr        #
+#    Updated: 2024/12/20 18:40:32 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,5 +48,3 @@ fclean: 	clean
 all:		$(NAME)
 
 re: 		fclean all
-
-
