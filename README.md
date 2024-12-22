@@ -1,13 +1,5 @@
 # SO_LONG
-
-### Apuntes:
-#### Sobre punteros y demás:
-* Un puntero es ua variable que almacena la **dirección de memoria** de otra variable. En lugar de contener un valor directo, como un número o un carácter, un puntero tiene la dirección donde se encuentra ese valor en la memoria del sistema. 
-* EL doble puntero almacena la dirección de otro puntero. Se usa cuando se necesita manipular punteros dentro de funciones o trabajar co estructuras de datos dinámicas.
-* Es un puntero que apunta a un doble puntero. Se utiliza en situaciones complejas, como matrices mulidimensionales o manipulación de estructuras de datos avanzadas.
-* Es un puntero que apunta a un doble puntero. Se utiliza en situaciones complejas, como matrices multidimensionales o manipulación de estructuras de datos avanzados. 
-
-- **Orden de desarrollo de funciones**
+ **Orden de desarrollo de funciones**
 
 1. **Leer el archivo .ber:** // Usar gnl propio
 * **read_map():** Leer el archivo y guardarlo en un array 2D.
