@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:01:29 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/22 13:00:14 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/23 12:47:15 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ void	freedom(void **p, void **p2)
 void	free_matrix(char **matrix, int rows)
 {
 	while (--rows >= 0)
+		free(matrix[rows]);
+	free(matrix);
+}
+void	free_p2(char **matrix)
+{
+	int	rows;
+
+	rows = -1;
+	while (matrix[++rows])
 		free(matrix[rows]);
 	free(matrix);
 }

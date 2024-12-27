@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 00:08:36 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/22 14:49:18 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/25 22:19:09 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ char	*read_all_lines(char *file_path)
 
 t_game_map	*read_map(char *file_path)
 {
-	t_game_map *map;
-	char *content;
-	char **lines;
+	t_game_map	*map;
+	char		*content;
+	char		**lines;
 
 	map = init_map();
 	if (!map)
@@ -65,7 +65,7 @@ t_game_map	*read_map(char *file_path)
 	if (!set_map_data(map, lines))
 		return (ft_free_strs(lines), free_map(map), NULL);
 	if (!validate_map(map))
-		return (free_map(map), NULL);
+		return (ft_free_strs(lines), free_map(map), NULL);
 	ft_free_strs(lines);
 	return (map);
 }

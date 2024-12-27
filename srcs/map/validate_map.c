@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 14:49:34 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/22 19:43:31 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/27 02:44:01 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,47 @@ int	is_map_surrounded_by_walls(t_game_map *map)
 	}
 	return (1);
 }
+int	valid_essential_characters(t_game_map *map)
+{
+	int	row;
+	int	col;
+	int	c;
+	int	essentials[3] = {0, 0, 0};
+
+	row = 0;
+	while (row < map->rows)
+	{
+		col = 0;
+		while (col < map->cols)
+		{
+			c = map->matrix[row][col];
+			if (c == 'P')
+				essentials[0]++;
+			else if (c == 'E')
+				essentials[1]++;
+			else if (c == 'C')
+				essentials[2]++;
+			col++;
+		}
+		row++;
+	}
+	return (essentials[0] == 1 && essentials[1] == 1 && essentials[2] > 0);
+}
+
 int	check_valid_characters(t_game_map *map)
 {
 	int	row;
 	int	col;
 	int	c;
 
+	if (!map || !map->matrix)
+		return (0);
 	row = 0;
 	while (row < map->rows)
 	{
 		if (!map->matrix[row])
 			return (0);
+		col = 0;
 		while (col < map->cols)
 		{
 			c = map->matrix[row][col];
@@ -71,6 +101,8 @@ int	check_valid_characters(t_game_map *map)
 		}
 		row++;
 	}
+	if (!valid_essential_characters(map))
+		return (0);
 	return (1);
 }
 int	validate_map(t_game_map *map)
@@ -88,7 +120,7 @@ int	validate_map(t_game_map *map)
 	if (!check_valid_characters(map))
 	{
 		ft_printfd(2, "Map error: invalid characters or incorrect sets\n");
-		return (0);
+		return (1);
 	}
 	return (1);
 }

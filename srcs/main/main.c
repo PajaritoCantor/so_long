@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/22 15:18:21 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/27 00:50:35 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ int	verificity_ber(char *file_name)
 
 int	main(int ag, char *av[])
 {
-	t_game_map *map;
+	t_game_map	*map;
+	t_window	*game;
+	int			start_x;
+	int			start_y;
 
 	if (ag != 2)
-	{
 		ft_error(USAGE, 1);
-	}
 	if (verificity_ber(av[1]))
 		return (0);
 	map = read_map(av[1]);
-	if (!map)
-	{
-		ft_printfd(2, "Error: Failed to load map or map is invalid.\n");
-		return (1);
-	}
+	find_start_point(map, &start_x, &start_y);
+	validate_path(map, start_x, start_y);
+	game = ft_calloc(1, sizeof(t_game_map));
+	init_game(game, map);
 	print_map(map);
 	free_map(map);
 	return (0);

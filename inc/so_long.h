@@ -6,15 +6,15 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/22 17:20:44 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/27 01:08:45 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include "MLX42/MLX42.h"
 # include "libft.h"
-# include "mlx.h"
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -49,31 +49,48 @@ typedef struct s_map
 	char		**matrix;
 	int			cols;
 	int			rows;
+	int			start_x;
+	int			start_y;
 	int			num_players;
 	int			num_exits;
 	int			num_collectibles;
 }				t_game_map;
 
-typedef struct s_vars
+typedef struct s_textures
 {
-	void		*mlx;
-	void		*mlx_win;
-	t_game_map	*game;
-	int			win_width;
-	int			win_height;
 	void		*wall_img;
 	void		*background_img;
 	void		*player_img;
 	void		*exit_img;
 	void		*caracter_img;
+}				t_textures;
+
+typedef struct s_window
+{
+	void		*mlx;
+	void		*mlx_win;
+	int			win_width;
+	int			win_height;
+}				t_window;
+
+typedef struct s_position
+{
 	int			player_x;
 	int			player_y;
-}				t_vars;
+}				t_position;
+
+typedef struct s_game
+{
+	t_window	*window;
+	t_game_map	*map;
+	t_textures	*textures;
+	t_position	*player_pos;
+}				t_game;
 
 void			freedom(void **p, void **p2);
 void			free_map(t_game_map *map);
 void			free_matrix(char **new_matrix, int filled_rows);
-
+void			free_p2(char **matrix);
 int				verificity_ber(char *file_name);
 void			print_map(t_game_map *map);
 // map
@@ -88,9 +105,19 @@ int				allocate_matrix(char ***matrix, int rows);
 int				copy_lines_to_matrix(char **matrix, char **lines, int rows,
 					t_game_map *map);
 int				validate_map(t_game_map *map);
+int				check_valid_characters(t_game_map *map);
+int				valid_essential_characters(t_game_map *map);
 int				is_rectangular(t_game_map *map);
 int				is_map_surrounded_by_walls(t_game_map *map);
+void			find_start_point(t_game_map *map, int *start_x, int *start_y);
+void			flood_fill(t_game_map *map, int x, int y, char to_fill);
+void			start_flood_fill(t_game_map *map);
+bool			check_all_collectible(t_game_map *map);
+bool			is_exit_reachable(t_game_map *map);
+char			**copy_map_matrix(t_game_map *map);
+bool			validate_path(t_game_map *map, int start_x, int start_y);
 
-t_game_map		*cleanup(t_game_map *map, char **lines);
+void			init_game(t_window *window, t_game_map *game);
+// t_game_map		*cleanup(t_game_map *map, char **lines);
 
 #endif
