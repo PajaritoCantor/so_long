@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2024/12/26 16:06:09 by jurodrig         ###   ########.fr        #
+#    Updated: 2024/12/29 18:25:17 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ MLX_LIB = $(MLX_BUILD)libmlx42.a
 #===============================COMPILER============================================#
 
 CC      = gcc
-CFLAGS  = -Wextra -Werror -Wall -g3 -fsanitize=address
+CFLAGS  = -Wextra -Werror -Wall -g3 #-fsanitize=address
 LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_BUILD) -lmlx42 -ldl -lglfw -pthread -lm
 MKDIR   = mkdir -p
 IFLAGS  = -I$(INC) -I$(LIBFT_DIR) -I$(MLX_INCLUDE)
@@ -56,10 +56,10 @@ IFLAGS  = -I$(INC) -I$(LIBFT_DIR) -I$(MLX_INCLUDE)
 #==============================SOURCES============================================#
 
 GAME_FILES      := init_game
-HOOK_FILES      := 
+HOOK_FILES      := control
 MAIN_FILES      := main
 MAP_FILES       := read_map set_map_data utils_map validate_map flood_fill path_validation
-RENDER_FILES    := 
+RENDER_FILES    := render
 GRAFIC_FILES    := 
 
 SRCS_FILES+=$(addprefix $(GAME_DIR), $(GAME_FILES))

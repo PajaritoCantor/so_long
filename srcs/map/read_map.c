@@ -6,17 +6,17 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 00:08:36 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/25 22:19:09 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:46:08 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_game_map	*init_map(void)
+t_map	*init_map(void)
 {
-	t_game_map	*map;
+	t_map	*map;
 
-	map = ft_calloc(1, sizeof(t_game_map));
+	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
 		return (NULL);
 	return (map);
@@ -46,9 +46,9 @@ char	*read_all_lines(char *file_path)
 	return (close(fd), file_content);
 }
 
-t_game_map	*read_map(char *file_path)
+t_map	*read_map(char *file_path)
 {
-	t_game_map	*map;
+	t_map	*map;
 	char		*content;
 	char		**lines;
 

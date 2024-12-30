@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:32:30 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/22 14:52:57 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:44:42 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	allocate_lines(char ***map_matrix, char **lines, int *map_rows)
 	return (1);
 }
 int	copy_lines_to_matrix(char **map_matrix, char **lines, int map_rows,
-		t_game_map *map)
+		t_map *map)
 {
 	int	i;
 
@@ -53,7 +53,7 @@ int	copy_lines_to_matrix(char **map_matrix, char **lines, int map_rows,
 	}
 	return (1);
 }
-int	set_map_data(t_game_map *map, char **lines)
+int	set_map_data(t_map *map, char **lines)
 {
 	char **map_matrix;
 	int map_rows;

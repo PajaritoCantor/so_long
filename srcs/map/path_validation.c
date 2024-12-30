@@ -6,13 +6,13 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 01:59:42 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/27 12:32:03 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:51:33 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-bool	check_all_collectible(t_game_map *map)
+bool	check_all_collectible(t_map *map)
 {
 	int	x;
 	int	y;
@@ -39,7 +39,7 @@ bool	check_all_collectible(t_game_map *map)
 	printf("Todos los coleccionables han sido recogidos.\n");
 	return (true);
 }
-bool	is_exit_reachable(t_game_map *map)
+bool	is_exit_reachable(t_map *map)
 {
 	int	x;
 	int	y;
@@ -66,7 +66,7 @@ bool	is_exit_reachable(t_game_map *map)
 	printf("No se encuentra la salida.\n");
 	return (false); // Si no encontramos la salida, no está alcanzable
 }
-char	**copy_map_matrix(t_game_map *map)
+char	**copy_map_matrix(t_map *map)
 {
 	char	**copy;
 	int		y;
@@ -95,12 +95,12 @@ char	**copy_map_matrix(t_game_map *map)
 	}
 	return (copy);
 }
-bool	validate_path(t_game_map *map, int start_x, int start_y)
+bool	validate_path(t_map *map, int start_x, int start_y)
 {
-	t_game_map	map_copy;
-	char		**matrix_copy;
-	bool		valid;
-	int			y;
+	t_map	map_copy;
+	char	**matrix_copy;
+	bool	valid;
+	int		y;
 
 	matrix_copy = copy_map_matrix(map);
 	if (!matrix_copy)
@@ -109,6 +109,13 @@ bool	validate_path(t_game_map *map, int start_x, int start_y)
 	map_copy.matrix = matrix_copy;
 	flood_fill(&map_copy, start_x, start_y, map->matrix[start_y][start_x]);
 	valid = check_all_collectible(&map_copy) && is_exit_reachable(&map_copy);
+	y = 0;
+	/*while (y < map->rows)
+	{
+		printf("%s\n", matrix_copy[y]);
+		y++;
+	}
+	*/
 	y = 0;
 	while (y < map->rows)
 		free(matrix_copy[y++]);

@@ -6,13 +6,13 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 14:49:34 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/27 02:44:01 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:45:21 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	is_rectangular(t_game_map *map)
+int	is_rectangular(t_map *map)
 {
 	size_t	expected_length;
 	int		row;
@@ -26,7 +26,7 @@ int	is_rectangular(t_game_map *map)
 	}
 	return (1);
 }
-int	is_map_surrounded_by_walls(t_game_map *map)
+int	is_map_surrounded_by_walls(t_map *map)
 {
 	int	col;
 	int	row;
@@ -51,7 +51,7 @@ int	is_map_surrounded_by_walls(t_game_map *map)
 	}
 	return (1);
 }
-int	valid_essential_characters(t_game_map *map)
+int	valid_essential_characters(t_map *map)
 {
 	int	row;
 	int	col;
@@ -78,7 +78,7 @@ int	valid_essential_characters(t_game_map *map)
 	return (essentials[0] == 1 && essentials[1] == 1 && essentials[2] > 0);
 }
 
-int	check_valid_characters(t_game_map *map)
+int	check_valid_characters(t_map *map)
 {
 	int	row;
 	int	col;
@@ -105,7 +105,7 @@ int	check_valid_characters(t_game_map *map)
 		return (0);
 	return (1);
 }
-int	validate_map(t_game_map *map)
+int	validate_map(t_map *map)
 {
 	if (!is_rectangular(map))
 	{

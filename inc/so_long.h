@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/27 01:08:45 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/30 16:03:49 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@
 # define ERROR "\033[1;31m❌ Error: Error in function!\n\033[0m"         // Rojo
 # define WARNING "\033[1;33m⚠️ Warning: Warning in function!\n\033[0m"
 
-# define WALL_TEXTURE "texture/Wall.xpm"
+# define WALL_TEXTURE "textures/wall.xpm"
 # define FLOOR_TEXTURE "textures/floor.xpm"
-# define PLAYER_TEXTURE "textures/collectible.xpm"
-# define COLLECTIBLE_TEXTURE "texture/collectibe.xpm"
+# define PLAYER_TEXTURE "textures/player.xpm"
+# define COLLECTIBLE_TEXTURE "textures/collectible.xpm"
 # define EXIT_TEXTURE "textures/exit.xpm"
 # define TILE_SIZE 32
 
@@ -54,7 +54,7 @@ typedef struct s_map
 	int			num_players;
 	int			num_exits;
 	int			num_collectibles;
-}				t_game_map;
+}				t_map;
 
 typedef struct s_textures
 {
@@ -82,42 +82,52 @@ typedef struct s_position
 typedef struct s_game
 {
 	t_window	*window;
-	t_game_map	*map;
+	t_map		*map;
 	t_textures	*textures;
-	t_position	*player_pos;
+	t_position	player_pos;
 }				t_game;
-
+// utils_map
 void			freedom(void **p, void **p2);
-void			free_map(t_game_map *map);
+void			free_map(t_map *map);
 void			free_matrix(char **new_matrix, int filled_rows);
 void			free_p2(char **matrix);
 int				verificity_ber(char *file_name);
-void			print_map(t_game_map *map);
+void			print_map(t_map *map);
 // map
-t_game_map		*read_map(char *file_path);
-t_game_map		*init_map(void);
+t_map			*read_map(char *file_path);
+t_map			*init_map(void);
 char			*read_all_lines(char *file_path);
 int				open_file(char *file_path);
-int				set_map_data(t_game_map *map, char **lines);
+int				set_map_data(t_map *map, char **lines);
 int				allocate_lines(char ***matrix, char **lines, int *rows);
 int				count_lines(char **lines);
 int				allocate_matrix(char ***matrix, int rows);
 int				copy_lines_to_matrix(char **matrix, char **lines, int rows,
-					t_game_map *map);
-int				validate_map(t_game_map *map);
-int				check_valid_characters(t_game_map *map);
-int				valid_essential_characters(t_game_map *map);
-int				is_rectangular(t_game_map *map);
-int				is_map_surrounded_by_walls(t_game_map *map);
-void			find_start_point(t_game_map *map, int *start_x, int *start_y);
-void			flood_fill(t_game_map *map, int x, int y, char to_fill);
-void			start_flood_fill(t_game_map *map);
-bool			check_all_collectible(t_game_map *map);
-bool			is_exit_reachable(t_game_map *map);
-char			**copy_map_matrix(t_game_map *map);
-bool			validate_path(t_game_map *map, int start_x, int start_y);
+					t_map *map);
+int				validate_map(t_map *map);
+int				check_valid_characters(t_map *map);
+int				valid_essential_characters(t_map *map);
+int				is_rectangular(t_map *map);
+int				is_map_surrounded_by_walls(t_map *map);
+bool			find_start_point(t_map *map);
+void			flood_fill(t_map *map, int x, int y, char to_fill);
+bool			check_all_collectible(t_map *map);
+bool			is_exit_reachable(t_map *map);
+char			**copy_map_matrix(t_map *map);
+bool			validate_path(t_map *map, int start_x, int start_y);
+// game
+void			init_game(t_game *game);
+void			close_window(t_game *game);
+// render
+void			render_tile(t_game *game, char tile, int x, int y);
+void			render_map(t_game *game);
+// hook
+void			move_player(t_game *game, int x_offset, int y_offset);
+void			key_handler(mlx_key_data_t keydata, void *param);
+void			close_handler(void *param);
+void			init_hook(t_game *game);
+void			exit_game(t_game *game);
 
-void			init_game(t_window *window, t_game_map *game);
 // t_game_map		*cleanup(t_game_map *map, char **lines);
 
 #endif

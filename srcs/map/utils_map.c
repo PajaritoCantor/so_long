@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:01:29 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/23 12:47:15 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:45:29 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	free_p2(char **matrix)
 		free(matrix[rows]);
 	free(matrix);
 }
-void	free_map(t_game_map *map)
+void	free_map(t_map *map)
 {
 	if (!map)
 		return ;
