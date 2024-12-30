@@ -1,3 +1,5 @@
+TRADUCCIÓN 
+
 MLX42 es una librería multiplataforma de gráficos simples y de bajo nivel.
  * escrita en C y utiliza OpenGL y GLFW para su sistema de ventanas y renderizado.
  * 
@@ -15,7 +17,7 @@ Inicializa una nueva instancia MLX42
 
 Parámetros:
 width - El ancho de la ventana
-heigth - El alto de la ventana 
+heigth - El alto de la ventana
 title - El título de la ventana 
 resize - Activar el redimensionamiento de ventanas
 
