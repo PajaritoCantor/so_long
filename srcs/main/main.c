@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/30 16:34:58 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/12/31 01:36:26 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ int	main(int argc, char *argv[])
 	if (!game)
 		return (free_map(map), ft_error("Error: Memory allocation failed.\n",
 				1));
+	game->map = map;
 	init_game(game);
-	//init_hook(game);
-	//render_map(game);
-	//mlx_loop(game->window.mlx);
+	render_map(game);
+	// init_hook(game);
+	mlx_loop(game->window->mlx);
 	free(game);
 	free_map(map);
 

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/30 16:03:49 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:22:15 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@
 # define ERROR "\033[1;31m❌ Error: Error in function!\n\033[0m"         // Rojo
 # define WARNING "\033[1;33m⚠️ Warning: Warning in function!\n\033[0m"
 
-# define WALL_TEXTURE "textures/wall.xpm"
-# define FLOOR_TEXTURE "textures/floor.xpm"
-# define PLAYER_TEXTURE "textures/player.xpm"
-# define COLLECTIBLE_TEXTURE "textures/collectible.xpm"
-# define EXIT_TEXTURE "textures/exit.xpm"
+# define WALL_TEXTURE "./textures/wall.xpm42"
+# define FLOOR_TEXTURE "./textures/floor.xpm42"
+# define PLAYER_TEXTURE "./textures/player.xpm42"
+# define COLLECTIBLE_TEXTURE "./textures/collectible.xpm42"
+# define EXIT_TEXTURE "./textures/exit.xpm42"
 # define TILE_SIZE 32
 
 # define WALL '1'
@@ -117,17 +117,13 @@ char			**copy_map_matrix(t_map *map);
 bool			validate_path(t_map *map, int start_x, int start_y);
 // game
 void			init_game(t_game *game);
+void			load_textures(t_game *game);
+void			convert_textures_to_images(t_game *game);
+void			close_handler(void *param);
 void			close_window(t_game *game);
 // render
 void			render_tile(t_game *game, char tile, int x, int y);
 void			render_map(t_game *game);
-// hook
-void			move_player(t_game *game, int x_offset, int y_offset);
-void			key_handler(mlx_key_data_t keydata, void *param);
-void			close_handler(void *param);
-void			init_hook(t_game *game);
-void			exit_game(t_game *game);
-
 // t_game_map		*cleanup(t_game_map *map, char **lines);
 
 #endif

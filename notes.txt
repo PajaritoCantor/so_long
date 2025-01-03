@@ -1,4 +1,4 @@
-TRADUCCIÓN 
+TRADUCCIÓN
 
 MLX42 es una librería multiplataforma de gráficos simples y de bajo nivel.
  * escrita en C y utiliza OpenGL y GLFW para su sistema de ventanas y renderizado.
