@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:27:21 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/31 01:29:59 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/04 14:20:49 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 void	render_tile(t_game *game, char tile, int x, int y)
 {
-	void	*img;
+	mlx_image_t	*img;
 
+	img = NULL;
+	if (!game->window->mlx)
+		ft_error("Error: MLX not initialized", 1);
+	if (tile != '1' && tile != 'C' && tile != 'P' && tile != 'E' && tile != '0')
+		ft_error("Error: invalid tile detected in map", 1);
 	if (tile == '1')
 		img = game->textures->wall_img;
 	else if (tile == 'C')
@@ -26,6 +31,10 @@ void	render_tile(t_game *game, char tile, int x, int y)
 		img = game->textures->exit_img;
 	else
 		img = game->textures->background_img;
+	if (!img)
+		ft_error("Error: Texture is NULL", 1);
+	printf("Rendering Tile '%c' at (%d, %d) with dimensions %d x %d\n", tile, x,
+		y, img->width, img->height);
 	mlx_image_to_window(game->window->mlx, img, x * TILE_SIZE, y * TILE_SIZE);
 }
 void	render_map(t_game *game)

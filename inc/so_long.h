@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/03 14:22:15 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/04 01:25:11 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ bool			validate_path(t_map *map, int start_x, int start_y);
 // game
 void			init_game(t_game *game);
 void			load_textures(t_game *game);
-void			convert_textures_to_images(t_game *game);
+void			place_images_in_window(t_game *game);
 void			close_handler(void *param);
 void			close_window(t_game *game);
 // render
