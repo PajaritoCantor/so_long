@@ -16,7 +16,6 @@ static void mlx_free_image(void* content)
  * Esto no es lo mismo que terminar, esto simplemente le dice a MLX que cierre la ventana.
  * @param[in] mlx El manejador de la instancia MLX.
  */
-void mlx_close_window(mlx_t* mlx);
 void mlx_close_window(mlx_t* mlx)
 {
 	MLX_NONNULL(mlx);

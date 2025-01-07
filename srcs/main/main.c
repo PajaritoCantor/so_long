@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/31 01:36:26 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/07 02:18:38 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	verificity_ber(char *file_name)
 
 int	main(int argc, char *argv[])
 {
-	t_map *map;
-	t_game *game;
+	t_map	*map;
+	t_game	*game;
 
 	if (argc != 2)
 		return (ft_error("Usage: ./game <map_file.ber>\n", 1));
@@ -55,15 +55,8 @@ int	main(int argc, char *argv[])
 		return (free_map(map), ft_error("Error: No start point found.\n", 1));
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (free_map(map), ft_error("Error: Memory allocation failed.\n",
-				1));
+		return (free(game), ft_error("Error: Memory allocation failed.\n", 1));
 	game->map = map;
 	init_game(game);
-	render_map(game);
-	// init_hook(game);
-	mlx_loop(game->window->mlx);
-	free(game);
-	free_map(map);
-
 	return (0);
 }

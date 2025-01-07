@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 14:49:34 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/30 09:45:21 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/05 02:54:23 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,19 +108,10 @@ int	check_valid_characters(t_map *map)
 int	validate_map(t_map *map)
 {
 	if (!is_rectangular(map))
-	{
-		ft_printfd(2, "Map error: not rectangular\n");
-		return (0);
-	}
+		ft_error("Map error: not rectangular\n", 1);
 	if (!is_map_surrounded_by_walls(map))
-	{
-		ft_printfd(2, "Map error: not surrounded by walls\n");
-		return (0);
-	}
+		ft_error("Map error: not surrounded by walls\n", 1);
 	if (!check_valid_characters(map))
-	{
-		ft_printfd(2, "Map error: invalid characters or incorrect sets\n");
-		return (1);
-	}
+		ft_error("Map error: invalid characters or incorrect sets\n", 1);
 	return (1);
 }

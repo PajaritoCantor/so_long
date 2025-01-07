@@ -6,18 +6,47 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 20:56:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/04 18:48:34 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/07 02:28:46 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	load_map(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	game->map->num_collectibles = 0;
+	while (y < game->map->rows)
+	{
+		x = 0;
+		while (x < game->map->cols)
+		{
+			if (game->map->matrix[y][x] == PLAYER)
+			{
+				game->player->position_x = x;
+				game->player->position_y = y;
+			}
+			else if (game->map->matrix[y][x] == COLLECTIBLE)
+				game->map->num_collectibles++;
+			x++;
+		}
+		y++;
+	}
+}
 void	close_handler(void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
+	free_textures(game);
 	close_window(game);
+	free_textures(game);
+	free(game->player);
+	free_map(game->map);
+	free(game);
 	exit(0);
 }
 void	close_window(t_game *game)
@@ -28,40 +57,14 @@ void	close_window(t_game *game)
 			mlx_terminate(game->window->mlx);
 		free(game->window->mlx);
 	}
+	free(game->window);
 }
-void	load_textures(t_game *game)
-{
-	game->textures->wall_img = mlx_load_xpm42(WALL_TEXTURE);
-	game->textures->background_img = mlx_load_xpm42(FLOOR_TEXTURE);
-	game->textures->player_img = mlx_load_xpm42(PLAYER_TEXTURE);
-	game->textures->caracter_img = mlx_load_xpm42(COLLECTIBLE_TEXTURE);
-	game->textures->exit_img = mlx_load_xpm42(EXIT_TEXTURE);
-	if (!game->textures->wall_img || !game->textures->background_img
-		|| !game->textures->player_img || !game->textures->exit_img
-		|| !game->textures->caracter_img)
-		ft_error("Error: Una o más texturas no se pudieron cargar.", 1);
-	game->textures->wall_img = mlx_texture_to_image(game->window->mlx,
-			game->textures->wall_img);
-	game->textures->background_img = mlx_texture_to_image(game->window->mlx,
-			game->textures->background_img);
-	game->textures->player_img = mlx_texture_to_image(game->window->mlx,
-			game->textures->player_img);
-	game->textures->caracter_img = mlx_texture_to_image(game->window->mlx,
-			game->textures->caracter_img);
-	game->textures->exit_img = mlx_texture_to_image(game->window->mlx,
-			game->textures->exit_img);
-	if (!game->textures->wall_img || !game->textures->background_img
-		|| !game->textures->player_img || !game->textures->exit_img
-		|| !game->textures->caracter_img)
-		ft_error("Error: Una o más imágenes no se pudieron convertir.", 1);
-}
+
 void	init_game(t_game *game)
 {
 	int	width;
 	int	height;
 
-	if (!game || !game->map || !game->map->matrix)
-		ft_error(ERROR_MAP, 1);
 	width = game->map->cols * TILE_SIZE;
 	height = game->map->rows * TILE_SIZE;
 	game->window = ft_calloc(1, sizeof(t_window));
@@ -71,14 +74,20 @@ void	init_game(t_game *game)
 	game->window->mlx = mlx_init(width, height, "SO_LONG", true);
 	if (!game->window->mlx)
 		ft_error("Error inicializando la ventana", 1);
-	else
-		printf("MLX initialized successfully.\n");
 	game->textures = ft_calloc(1, sizeof(t_textures));
 	if (!game->textures)
 		ft_error("Error al asignar memoria para las texturas", 1);
 	load_textures(game);
+	convert_textures(game);
+	game->player = ft_calloc(1, sizeof(t_position));
+	if (!game->player)
+		ft_error("Error al asignar memoria para el jugador", 1);
+	load_map(game);
 	render_map(game);
+	if (!game->player)
+		ft_error("Error al asignar memoria para el jugador", 1);
+	mlx_key_hook(game->window->mlx, handle_keypress, game);
+	// mlx_loop_hook(game->window->mlx, game_loop, game);
 	mlx_close_hook(game->window->mlx, close_handler, game);
-	// mlx_key_hook(game->window->mlx, key_handler, game);
 	mlx_loop(game->window->mlx);
 }

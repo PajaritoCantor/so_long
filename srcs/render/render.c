@@ -6,36 +6,36 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:27:21 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/04 14:20:49 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/07 01:57:11 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	draw_player(t_game *game)
+{
+	mlx_image_to_window(game->window->mlx, game->textures->player_img,
+		game->player->position_x * TILE_SIZE, game->player->position_y
+		* TILE_SIZE);
+}
+
 void	render_tile(t_game *game, char tile, int x, int y)
 {
-	mlx_image_t	*img;
-
-	img = NULL;
-	if (!game->window->mlx)
-		ft_error("Error: MLX not initialized", 1);
-	if (tile != '1' && tile != 'C' && tile != 'P' && tile != 'E' && tile != '0')
-		ft_error("Error: invalid tile detected in map", 1);
 	if (tile == '1')
-		img = game->textures->wall_img;
+		mlx_image_to_window(game->window->mlx, game->textures->wall_img, x
+			* TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'C')
-		img = game->textures->caracter_img;
+		mlx_image_to_window(game->window->mlx, game->textures->caracter_img, x
+			* TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'P')
-		img = game->textures->player_img;
+		mlx_image_to_window(game->window->mlx, game->textures->player_img, x
+			* TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'E')
-		img = game->textures->exit_img;
+		mlx_image_to_window(game->window->mlx, game->textures->exit_img, x
+			* TILE_SIZE, y * TILE_SIZE);
 	else
-		img = game->textures->background_img;
-	if (!img)
-		ft_error("Error: Texture is NULL", 1);
-	printf("Rendering Tile '%c' at (%d, %d) with dimensions %d x %d\n", tile, x,
-		y, img->width, img->height);
-	mlx_image_to_window(game->window->mlx, img, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_image_to_window(game->window->mlx, game->textures->background_img, x
+			* TILE_SIZE, y * TILE_SIZE);
 }
 void	render_map(t_game *game)
 {
@@ -53,4 +53,5 @@ void	render_map(t_game *game)
 		}
 		y++;
 	}
+	draw_player(game);
 }

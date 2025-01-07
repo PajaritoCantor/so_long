@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/04 01:25:11 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/07 01:45:20 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,28 @@
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
 
+typedef enum e_direction
+{
+	STILL,
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}				t_direction;
+
+typedef struct s_position
+{
+	int			position_x;
+	int			position_y;
+	t_direction	facing;
+	int			collected;
+}				t_position;
+
 typedef struct s_map
 {
 	char		**matrix;
 	int			cols;
 	int			rows;
-	int			start_x;
-	int			start_y;
 	int			num_players;
 	int			num_exits;
 	int			num_collectibles;
@@ -67,28 +82,25 @@ typedef struct s_textures
 
 typedef struct s_window
 {
-	void		*mlx;
+	mlx_t		*mlx;
 	void		*mlx_win;
 	int			win_width;
 	int			win_height;
 }				t_window;
-
-typedef struct s_position
-{
-	int			player_x;
-	int			player_y;
-}				t_position;
 
 typedef struct s_game
 {
 	t_window	*window;
 	t_map		*map;
 	t_textures	*textures;
-	t_position	player_pos;
+	t_position	*player;
 }				t_game;
+
 // utils_map
 void			freedom(void **p, void **p2);
 void			free_map(t_map *map);
+void			free_game(t_game *game);
+void			free_textures(t_game *game);
 void			free_matrix(char **new_matrix, int filled_rows);
 void			free_p2(char **matrix);
 int				verificity_ber(char *file_name);
@@ -118,12 +130,18 @@ bool			validate_path(t_map *map, int start_x, int start_y);
 // game
 void			init_game(t_game *game);
 void			load_textures(t_game *game);
-void			place_images_in_window(t_game *game);
+void			convert_textures(t_game *game);
+void			load_map(t_game *game);
+// controls
+
+void			handle_keypress(mlx_key_data_t keydata, void *param);
 void			close_handler(void *param);
 void			close_window(t_game *game);
 // render
 void			render_tile(t_game *game, char tile, int x, int y);
 void			render_map(t_game *game);
-// t_game_map		*cleanup(t_game_map *map, char **lines);
+void			draw_player(t_game *game);
+
+void			game_loop(void *param);
 
 #endif
