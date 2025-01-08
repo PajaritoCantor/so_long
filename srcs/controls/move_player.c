@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:24:42 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/08 02:28:01 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/08 02:42:55 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	detect_position(t_game *game, int x, int y)
 		game->map->matrix[y][x] = EMPTY;
 		game->player->collected++;
 	}
-	else if (game->map->matrix[y][x] == EMPTY
-		&& game->player->collected == game->map->num_collectibles)
+	else if (game->map->matrix[y][x] == EXIT)
 	{
-		end_game(game, "You win!");
-		return ;
+		if (game->player->collected == game->map->num_collectibles)
+			end_game(game, "You win!");
 	}
+	return ;
 }
 
 void	move_player(t_game *game, int dx, int dy)
