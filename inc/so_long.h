@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/07 23:54:13 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/08 02:23:28 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_map
 	char		**matrix;
 	int			cols;
 	int			rows;
-	int			num_players;
+	int			num_exits;
 	int			num_collectibles;
 }				t_map;
 
@@ -140,6 +140,7 @@ void			render_tile(t_game *game, char tile, int x, int y);
 void			render_map(t_game *game);
 void			draw_player(t_game *game);
 
-void			game_loop(void *param);
+void			move_player(t_game *game, int dx, int dy);
+void			end_game(t_game *game, const char *message);
 
 #endif

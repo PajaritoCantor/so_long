@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2025/01/06 21:58:29 by jurodrig         ###   ########.fr        #
+#    Updated: 2025/01/08 02:16:48 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,8 @@ IFLAGS  = -I$(INC) -I$(LIBFT_DIR) -I$(MLX_INCLUDE)
 
 #==============================SOURCES============================================#
 
-GAME_FILES      := init_game textures
-CONTROLS_FILES  := keyboard
+GAME_FILES      := init_game textures utils_game
+CONTROLS_FILES  := keyboard move_player
 MAIN_FILES      := main
 MAP_FILES       := read_map set_map_data utils_map validate_map flood_fill path_validation
 RENDER_FILES    := render

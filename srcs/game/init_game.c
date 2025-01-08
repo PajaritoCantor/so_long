@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 20:56:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/08 00:50:03 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/08 02:28:34 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,47 +36,6 @@ void	load_map(t_game *game)
 		y++;
 	}
 }
-void	free_game(t_game *game)
-{
-	if (!game)
-		return ;
-	close_window(game);
-	free_textures(game);
-	if (game->player)
-	{
-		free(game->player);
-		game->player = NULL;
-	}
-	if (game->map)
-	{
-		free_map(game->map);
-		game->map = NULL;
-	}
-	free(game);
-	game = NULL;
-}
-void	close_handler(void *param)
-{
-	t_game	*game;
-
-	game = (t_game *)param;
-	free_game(game);
-	exit(0);
-}
-void	close_window(t_game *game)
-{
-	if (game->window)
-	{
-		if (game->window->mlx)
-		{
-			mlx_terminate(game->window->mlx);
-			game->window->mlx = NULL;
-		}
-		free(game->window);
-		game->window = NULL;
-	}
-}
-
 void	init_game(t_game *game)
 {
 	int	width;
