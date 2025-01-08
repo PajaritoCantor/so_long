@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:52:26 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/07 02:32:54 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/08 00:55:43 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	move_up(t_game *game)
 		else if (game->map->matrix[game->player->position_y][game->player->position_x] == EMPTY
 			&& game->player->collected == game->map->num_collectibles)
 		{
-			end_game(game, "Victory!");
+			end_game(game);
 			return ;
 		}
 		printf("Player moved up! New Position: (%d, %d)\n",

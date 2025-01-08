@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/07 02:18:38 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/08 00:46:06 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int	main(int argc, char *argv[])
 		return (free(game), ft_error("Error: Memory allocation failed.\n", 1));
 	game->map = map;
 	init_game(game);
+	free_game(game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/07 01:45:20 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/07 23:54:13 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_map
 	int			cols;
 	int			rows;
 	int			num_players;
-	int			num_exits;
 	int			num_collectibles;
 }				t_map;
 
@@ -83,7 +82,6 @@ typedef struct s_textures
 typedef struct s_window
 {
 	mlx_t		*mlx;
-	void		*mlx_win;
 	int			win_width;
 	int			win_height;
 }				t_window;

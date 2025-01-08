@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 15:27:21 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/07 01:57:11 by jurodrig         ###   ########.fr       */
+/*   Created: 2025/01/07 21:09:25 by jurodrig          #+#    #+#             */
+/*   Updated: 2025/01/08 00:42:12 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	draw_player(t_game *game)
 		game->player->position_x * TILE_SIZE, game->player->position_y
 		* TILE_SIZE);
 }
-
 void	render_tile(t_game *game, char tile, int x, int y)
 {
 	if (tile == '1')
@@ -26,9 +25,6 @@ void	render_tile(t_game *game, char tile, int x, int y)
 			* TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'C')
 		mlx_image_to_window(game->window->mlx, game->textures->caracter_img, x
-			* TILE_SIZE, y * TILE_SIZE);
-	else if (tile == 'P')
-		mlx_image_to_window(game->window->mlx, game->textures->player_img, x
 			* TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'E')
 		mlx_image_to_window(game->window->mlx, game->textures->exit_img, x
