@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_game.c                                       :+:      :+:    :+:   */
+/*   close_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:20:27 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/08 02:07:12 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 02:28:17 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	end_game(t_game *game, const char *message)
 		free(game->map->matrix);
 		free(game->map);
 	}
-	free_textures(game);
+	free_images(game);
 	if (game->window)
 	{
 		if (game->window->mlx)
@@ -38,4 +38,11 @@ void	end_game(t_game *game, const char *message)
 	if (game->player)
 		free(game->player);
 	exit(EXIT_SUCCESS);
+}
+void	close_handler(void *param)
+{
+	t_game *game;
+
+	game = (t_game *)param;
+	end_game(game, "Game closed!");
 }

@@ -1,0 +1,30 @@
+==1384534== Memcheck, a memory error detector
+==1384534== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1384534== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1384534== Command: ./so_long maps/proto.ber
+==1384534== Parent PID: 1347212
+==1384534== 
+==1384534== 
+==1384534== Process terminating with default action of signal 11 (SIGSEGV)
+==1384534==  General Protection Fault
+==1384534==    at 0x5441EC2: __pthread_once_slow (pthread_once.c:114)
+==1384534==    by 0x55108C2: __rpc_thread_variables (rpc_thread.c:59)
+==1384534==    by 0x5563C0C: free_mem (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==1384534==    by 0x5563741: __libc_freeres (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==1384534==    by 0x483F1B2: _vgnU_freeres (in /usr/libexec/valgrind/vgpreload_core-amd64-linux.so)
+==1384534==    by 0x4A593DF: ???
+==1384534==    by 0x494F2D6: __sanitizer::Die() (sanitizer_termination.cpp:59)
+==1384534==    by 0x49253B8: __asan::AsanCheckDynamicRTPrereqs() (asan_linux.cpp:181)
+==1384534==    by 0x4931564: __asan::AsanInitInternal() [clone .part.0] (asan_rtl.cpp:420)
+==1384534==    by 0x40065BD: _dl_init (dl-init.c:102)
+==1384534==    by 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+==1384534==    by 0x1: ???
+==1384534== 
+==1384534== HEAP SUMMARY:
+==1384534==     in use at exit: 0 bytes in 0 blocks
+==1384534==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==1384534== 
+==1384534== All heap blocks were freed -- no leaks are possible
+==1384534== 
+==1384534== For lists of detected and suppressed errors, rerun with: -s
+==1384534== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

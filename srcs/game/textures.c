@@ -6,28 +6,25 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 01:17:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/08 00:37:10 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 02:54:00 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_textures(t_game *game)
+void	free_images(t_game *game)
 {
-    if (game->textures->wall_img)
-        mlx_delete_texture(game->textures->wall_img);
-    if (game->textures->background_img)
-        mlx_delete_texture(game->textures->background_img);
-    if (game->textures->caracter_img)
-        mlx_delete_texture(game->textures->caracter_img);
-    if (game->textures->player_img)
-        mlx_delete_texture(game->textures->player_img);
-    if (game->textures->exit_img)
-        mlx_delete_texture(game->textures->exit_img);
-    free(game->textures);
-    game->textures = NULL;
+	if (game->textures->wall_img)
+		mlx_delete_image(game->window->mlx, game->textures->wall_img);
+	if (game->textures->background_img)
+		mlx_delete_image(game->window->mlx, game->textures->background_img);
+	if (game->textures->player_img)
+		mlx_delete_image(game->window->mlx, game->textures->player_img);
+	if (game->textures->caracter_img)
+		mlx_delete_image(game->window->mlx, game->textures->caracter_img);
+	if (game->textures->exit_img)
+		mlx_delete_image(game->window->mlx, game->textures->exit_img);
 }
-
 void	load_textures(t_game *game)
 {
 	game->textures->wall_img = mlx_load_xpm42(WALL_TEXTURE);
@@ -43,17 +40,30 @@ void	load_textures(t_game *game)
 
 void	convert_textures(t_game *game)
 {
-	t_textures *textures = game->textures;
+	void	*temp;
 
-	textures->wall_img = mlx_texture_to_image(game->window->mlx, textures->wall_img);
-	textures->background_img = mlx_texture_to_image(game->window->mlx, textures->background_img);
-	textures->player_img = mlx_texture_to_image(game->window->mlx, textures->player_img);
-	textures->caracter_img = mlx_texture_to_image(game->window->mlx, textures->caracter_img);
-	textures->exit_img = mlx_texture_to_image(game->window->mlx, textures->exit_img);
-
-	// Asegúrate de que no se pierda memoria intermedia
-	if (!textures->wall_img || !textures->background_img
-		|| !textures->player_img || !textures->caracter_img
-		|| !textures->exit_img)
-		ft_error("Error: Missing texture.", 1);
+	temp = game->textures->wall_img;
+	game->textures->wall_img = mlx_texture_to_image(game->window->mlx,
+			game->textures->wall_img);
+	mlx_delete_xpm42(temp);
+	temp = game->textures->background_img;
+	game->textures->background_img = mlx_texture_to_image(game->window->mlx,
+			game->textures->background_img);
+	mlx_delete_xpm42(temp);
+	temp = game->textures->player_img;
+	game->textures->player_img = mlx_texture_to_image(game->window->mlx,
+			game->textures->player_img);
+	mlx_delete_xpm42(temp);
+	temp = game->textures->caracter_img;
+	game->textures->caracter_img = mlx_texture_to_image(game->window->mlx,
+			game->textures->caracter_img);
+	mlx_delete_xpm42(temp);
+	temp = game->textures->exit_img;
+	game->textures->exit_img = mlx_texture_to_image(game->window->mlx,
+			game->textures->exit_img);
+	mlx_delete_xpm42(temp);
+	if (!game->textures->wall_img || !game->textures->background_img
+		|| !game->textures->player_img || !game->textures->caracter_img
+		|| !game->textures->exit_img)
+		(free_textures(game), ft_error("Error: Missing texture.", 1));
 }

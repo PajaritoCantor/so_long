@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 20:56:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/08 02:28:34 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 02:23:15 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	init_game(t_game *game)
 	game->window = ft_calloc(1, sizeof(t_window));
 	if (!game->window)
 		ft_error(ERROR_WINDOW, 1);
-	mlx_set_setting(MLX_SETTINGS_MAX, true);
 	game->window->mlx = mlx_init(width, height, "SO_LONG", true);
 	if (!game->window->mlx)
 		ft_error("Error inicializando la ventana", 1);

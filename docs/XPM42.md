@@ -88,8 +88,9 @@ int32_t	main(void)
 
 	mlx_loop(mlx);
 
-	// Opcional, terminar limpiará cualquier sobrante, esto es sólo para demostrar.
-	mlx_delete_image(mlx, img);
+	// Opcional, terminar limpiará cualquier sobrante, esto es sólo para demostrar. img: (abcde:5) lib_txt:(3) lib_img:(5)
+	mlx_delete_texture(mlx, img);//(3)
+	mlx_delete_imagen(mlx, img);//(5)
 	mlx_delete_xpm42(xpm);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

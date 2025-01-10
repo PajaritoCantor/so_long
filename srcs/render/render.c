@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:09:25 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/08 00:42:12 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 01:36:56 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	render_tile(t_game *game, char tile, int x, int y)
 }
 void	render_map(t_game *game)
 {
+	apply_gravity(game);
+
 	int x;
 	int y;
 
