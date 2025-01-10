@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 21:03:44 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 21:04:48 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int	main(int argc, char *argv[])
 	init_game(game);
 	mlx_key_hook(game->window->mlx, handle_keypress, game);
 	mlx_close_hook(game->window->mlx, close_handler, game);
-	mlx_loop(game->window->mlx);z
+	mlx_loop(game->window->mlx);
 	return (0);
 }
