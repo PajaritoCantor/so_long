@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/08 02:08:53 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 21:03:44 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	print_map(t_map *map)
 		row++;
 	}
 }
+
 int	verificity_ber(char *file_name)
 {
 	size_t	len;
@@ -58,5 +59,8 @@ int	main(int argc, char *argv[])
 		return (free(game), ft_error("Error: Memory allocation failed.\n", 1));
 	game->map = map;
 	init_game(game);
+	mlx_key_hook(game->window->mlx, handle_keypress, game);
+	mlx_close_hook(game->window->mlx, close_handler, game);
+	mlx_loop(game->window->mlx);z
 	return (0);
 }

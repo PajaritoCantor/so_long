@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 00:08:36 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/30 09:46:08 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:59:35 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_map	*init_map(void)
 		return (NULL);
 	return (map);
 }
+
 char	*read_all_lines(char *file_path)
 {
 	int		fd;
@@ -49,8 +50,8 @@ char	*read_all_lines(char *file_path)
 t_map	*read_map(char *file_path)
 {
 	t_map	*map;
-	char		*content;
-	char		**lines;
+	char	*content;
+	char	**lines;
 
 	map = init_map();
 	if (!map)

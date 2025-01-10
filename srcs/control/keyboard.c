@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:52:26 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/09 23:18:04 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:23:22 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	move_player(t_game *game, int dx, int dy)
 			game->player->facing = LEFT;
 		else if (dx == 1)
 			game->player->facing = RIGHT;
+		game->player->moves++;
+		printf("Moves: %d\n", game->player->moves);
 		detect_position(game, new_x, new_y);
 		render_map(game);
-		printf("Player moved! New Position: (%d, %d)\n", new_x, new_y);
+		display_moves(game);
 	}
-	else
-		printf("Invalid move: Wall or boundary!\n");
 }
 
 void	handle_keypress(mlx_key_data_t keydata, void *param)
@@ -62,7 +62,7 @@ void	handle_keypress(mlx_key_data_t keydata, void *param)
 	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		close_handler(game);
-	if (keydata.action == MLX_PRESS )
+	if (keydata.action == MLX_PRESS)
 	{
 		if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 			move_player(game, 0, -1);

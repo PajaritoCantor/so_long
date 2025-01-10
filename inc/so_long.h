@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 02:44:36 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 21:03:48 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ typedef struct s_position
 	int collected;      // Número de coleccionables recogidos
 	int is_jumping;     // Indicador de si el jugador está saltando
 	int velocity_y;     // Velocidad vertical del jugador
-	int on_ground;      // Indicador de si el jugador está en el suelo
+	int	on_ground;
+	int	moves;
 }		t_position;
 
 typedef struct s_map
@@ -99,13 +100,6 @@ typedef struct s_game
 	int jump_height;      // Altura máxima del salto
 }		t_game;
 
-// utils_map
-void	freedom(void **p, void **p2);
-void	free_map(t_map *map);
-void	free_matrix(char **new_matrix, int filled_rows);
-void	free_p2(char **matrix);
-int		verificity_ber(char *file_name);
-void	print_map(t_map *map);
 // map
 t_map	*read_map(char *file_path);
 t_map	*init_map(void);
@@ -131,19 +125,28 @@ bool	validate_path(t_map *map, int start_x, int start_y);
 void	init_game(t_game *game);
 void	load_textures(t_game *game);
 void	convert_textures(t_game *game);
-void	load_map(t_game *game);
+void	search_player_and_collectibles(t_game *game);
+void	render_map(t_game *game);
+void	render_tile(t_game *game, char tile, int x, int y);
+void	draw_player(t_game *game);
 // controls
-
 void	handle_keypress(mlx_key_data_t keydata, void *param);
 void	close_handler(void *param);
-// render
-void	render_tile(t_game *game, char tile, int x, int y);
-void	render_map(t_game *game);
-void	draw_player(t_game *game);
-void	apply_gravity(t_game *game);
-
-void	move_player(t_game *game, int dx, int dy);
 void	end_game(t_game *game, const char *message);
+void	move_player(t_game *game, int dx, int dy);
+void	detect_position(t_game *game, int x, int y);
+void	display_moves(t_game *game);
+
+// void	apply_gravity(t_game *game);
+
+// free
+void	freedom(void **p, void **p2);
+void	free_map(t_map *map);
+void	free_matrix(char **new_matrix, int filled_rows);
+void	free_double_pointer(char **matrix);
+int		verificity_ber(char *file_name);
+void	print_map(t_map *map);
 void	free_images(t_game *game);
+void	free_textures(t_game *game);
 
 #endif

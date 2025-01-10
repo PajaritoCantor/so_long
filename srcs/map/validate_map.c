@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 14:49:34 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/05 02:54:23 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:52:50 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	is_rectangular(t_map *map)
 	}
 	return (1);
 }
+
 int	is_map_surrounded_by_walls(t_map *map)
 {
 	int	col;
@@ -51,6 +52,7 @@ int	is_map_surrounded_by_walls(t_map *map)
 	}
 	return (1);
 }
+
 int	valid_essential_characters(t_map *map)
 {
 	int	row;
@@ -105,6 +107,7 @@ int	check_valid_characters(t_map *map)
 		return (0);
 	return (1);
 }
+
 int	validate_map(t_map *map)
 {
 	if (!is_rectangular(map))

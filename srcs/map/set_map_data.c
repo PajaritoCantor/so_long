@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:32:30 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/06 22:23:41 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:59:13 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	count_lines(char **lines)
 		count++;
 	return (count);
 }
+
 int	allocate_matrix(char ***map_matrix, int map_rows)
 {
 	if (map_rows <= 0)
@@ -31,6 +32,7 @@ int	allocate_matrix(char ***map_matrix, int map_rows)
 	*map_matrix = ft_calloc(map_rows + 1, sizeof(char *));
 	return (*map_matrix != NULL);
 }
+
 int	allocate_lines(char ***map_matrix, char **lines, int *map_rows)
 {
 	*map_rows = count_lines(lines);
@@ -38,6 +40,7 @@ int	allocate_lines(char ***map_matrix, char **lines, int *map_rows)
 		return (0);
 	return (1);
 }
+
 int	copy_lines_to_matrix(char **map_matrix, char **lines, int map_rows,
 		t_map *map)
 {
@@ -58,10 +61,11 @@ int	copy_lines_to_matrix(char **map_matrix, char **lines, int map_rows,
 	}
 	return (1);
 }
+
 int	set_map_data(t_map *map, char **lines)
 {
-	char **map_matrix;
-	int map_rows;
+	char	**map_matrix;
+	int		map_rows;
 
 	if (!lines || !lines[0])
 		return (0);

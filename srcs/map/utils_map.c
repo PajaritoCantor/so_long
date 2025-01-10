@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:01:29 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/12/30 09:45:29 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:59:49 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	open_file(char *file_path)
 	}
 	return (fd);
 }
+
 void	freedom(void **p, void **p2)
 {
 	if (p && *p)
@@ -37,13 +38,15 @@ void	freedom(void **p, void **p2)
 		*p2 = NULL;
 	}
 }
+
 void	free_matrix(char **matrix, int rows)
 {
 	while (--rows >= 0)
 		free(matrix[rows]);
 	free(matrix);
 }
-void	free_p2(char **matrix)
+
+void	free_double_pointer(char **matrix)
 {
 	int	rows;
 
@@ -52,6 +55,7 @@ void	free_p2(char **matrix)
 		free(matrix[rows]);
 	free(matrix);
 }
+
 void	free_map(t_map *map)
 {
 	if (!map)

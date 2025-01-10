@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:20:27 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 02:28:17 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:38:41 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	end_game(t_game *game, const char *message)
 		free(game->player);
 	exit(EXIT_SUCCESS);
 }
+
 void	close_handler(void *param)
 {
 	t_game *game;

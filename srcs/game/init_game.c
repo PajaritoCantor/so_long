@@ -6,13 +6,13 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 20:56:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 02:23:15 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 21:03:36 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	load_map(t_game *game)
+void	search_player_and_collectibles(t_game *game)
 {
 	int	x;
 	int	y;
@@ -35,7 +35,9 @@ void	load_map(t_game *game)
 		}
 		y++;
 	}
+	game->player->moves = 0;
 }
+
 void	init_game(t_game *game)
 {
 	int	width;
@@ -57,11 +59,8 @@ void	init_game(t_game *game)
 	game->player = ft_calloc(1, sizeof(t_position));
 	if (!game->player)
 		ft_error("Error al asignar memoria para el jugador", 1);
-	load_map(game);
+	search_player_and_collectibles(game);
 	render_map(game);
 	if (!game->player)
 		ft_error("Error al asignar memoria para el jugador", 1);
-	mlx_key_hook(game->window->mlx, handle_keypress, game);
-	mlx_close_hook(game->window->mlx, close_handler, game);
-	mlx_loop(game->window->mlx);
 }

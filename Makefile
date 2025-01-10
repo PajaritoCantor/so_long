@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2025/01/09 22:49:50 by jurodrig         ###   ########.fr        #
+#    Updated: 2025/01/10 17:45:53 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,9 @@ MLX_INCLUDE     := $(MLX_DIR)include/
 MLX_BUILD       := $(MLX_DIR)build/
 
 GAME_DIR        := game/
-CONTROLS_DIR    := controls/
+CONTROL_DIR    	:= control/
 MAIN_DIR        := main/
 MAP_DIR         := map/
-RENDER_DIR      := render/
-UTILS_DIR       := utils/
-GRAFIC_DIR      := grafic/
 
 #==============================VARIABLES=============================================#
 
@@ -48,25 +45,22 @@ MLX_LIB = $(MLX_BUILD)libmlx42.a
 #===============================COMPILER============================================#
 
 CC      = gcc
-CFLAGS  = -Wextra -Werror -Wall -g3 -fsanitize=address
+CFLAGS  = -Wextra -Werror -Wall -g3  -fsanitize=address
 LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_BUILD) -lmlx42 -ldl -lglfw -pthread -lm
 MKDIR   = mkdir -p
 IFLAGS  = -I$(INC) -I$(LIBFT_DIR) -I$(MLX_INCLUDE)
 
 #==============================SOURCES============================================#
 
-GAME_FILES      := init_game textures close_handler
-CONTROLS_FILES  := keyboard apply_gravity
+GAME_FILES      := init_game render textures utils_game
+CONTROL_FILES  	:= keyboard utils_control
 MAIN_FILES      := main
 MAP_FILES       := read_map set_map_data utils_map validate_map flood_fill path_validation
-RENDER_FILES    := render
-GRAFIC_FILES    := 
 
 SRCS_FILES+=$(addprefix $(GAME_DIR), $(GAME_FILES))
-SRCS_FILES+=$(addprefix $(CONTROLS_DIR), $(CONTROLS_FILES))
+SRCS_FILES+=$(addprefix $(CONTROL_DIR), $(CONTROL_FILES))
 SRCS_FILES+=$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 SRCS_FILES+=$(addprefix $(MAP_DIR), $(MAP_FILES))
-SRCS_FILES+=$(addprefix $(RENDER_DIR), $(RENDER_FILES))
 SRCS_FILES+=$(addprefix $(GRAFIC_DIR), $(GRAFIC_FILES))
 
 SRCS        := $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))

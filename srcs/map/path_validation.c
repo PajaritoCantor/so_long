@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 01:59:42 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/05 03:03:49 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:40:43 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ bool	check_all_collectible(t_map *map)
 	}
 	return (true);
 }
+
 bool	is_exit_reachable(t_map *map)
 {
 	int	x;
@@ -54,6 +55,7 @@ bool	is_exit_reachable(t_map *map)
 	printf("No se encuentra la salida (%d, %d)\n", x, y);
 	return (false);
 }
+
 char	**copy_map_matrix(t_map *map)
 {
 	char	**copy;
@@ -75,6 +77,7 @@ char	**copy_map_matrix(t_map *map)
 	}
 	return (copy);
 }
+
 bool	validate_path(t_map *map, int start_x, int start_y)
 {
 	t_map	map_copy;

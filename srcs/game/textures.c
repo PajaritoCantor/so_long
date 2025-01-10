@@ -6,12 +6,21 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 01:17:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 02:54:00 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/10 21:03:34 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	free_textures(t_game *game)
+{
+	mlx_delete_texture(game->textures->wall_img);
+	mlx_delete_texture(game->textures->background_img);
+	mlx_delete_texture(game->textures->caracter_img);
+	mlx_delete_texture(game->textures->player_img);
+	mlx_delete_texture(game->textures->exit_img);
+	free(game->textures);
+}
 void	free_images(t_game *game)
 {
 	if (game->textures->wall_img)
