@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 23:05:59 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 15:40:23 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/12 22:45:44 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,20 @@ bool	find_start_point(t_map *map)
 		y++;
 	}
 	ft_error("Error: No se encontré el punto de inicio 'P.\n", 1);
-	return (false);
+	return (true);
 }
 
-void	flood_fill(t_map *map, int x, int y, char to_fill)
+void	flood_fill(t_map *map, int x, int y)
 {
-	if (x < 0 || x >= map->cols || y < 0 || y >= map->rows
-		|| (map->matrix[y][x] != '0' && map->matrix[y][x] != 'C'
-			&& map->matrix[y][x] != 'P') || map->matrix[y][x] == 'F')
+	if (map->matrix[y][x] == '1' || map->matrix[y][x] == 'F'
+		|| map->matrix[y][x] == 'X')
+	{
+		printf("[%d, %d]\n", x, y);
 		return ;
+	}
 	map->matrix[y][x] = 'F';
-	flood_fill(map, x - 1, y, to_fill);
-	flood_fill(map, x + 1, y, to_fill);
-	flood_fill(map, x, y - 1, to_fill);
-	flood_fill(map, x, y + 1, to_fill);
+	flood_fill(map, x - 1, y);
+	flood_fill(map, x + 1, y);
+	flood_fill(map, x, y - 1);
+	flood_fill(map, x, y + 1);
 }

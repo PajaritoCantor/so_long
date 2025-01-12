@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:09:25 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 15:20:02 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/11 01:08:10 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	render_tile(t_game *game, char tile, int x, int y)
 			* TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'E')
 		mlx_image_to_window(game->window->mlx, game->textures->exit_img, x
+			* TILE_SIZE, y * TILE_SIZE);
+	else if (tile == 'X')
+		mlx_image_to_window(game->window->mlx, game->textures->enemy_img, x
 			* TILE_SIZE, y * TILE_SIZE);
 	else
 		mlx_image_to_window(game->window->mlx, game->textures->background_img, x

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 21:04:48 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/12 22:55:17 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char *argv[])
 	if (!map)
 		return (ft_error("Error: Could not load map.\n", 1));
 	if (!find_start_point(map))
-		return (free_map(map), ft_error("Error: No start point found.\n", 1));
+		return (free_map(map), ft_error("No start point found.\n", 1));
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		return (free(game), ft_error("Error: Memory allocation failed.\n", 1));

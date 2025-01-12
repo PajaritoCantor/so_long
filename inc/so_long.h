@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 21:03:48 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/12 22:32:35 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@
 # define PLAYER_TEXTURE "./textures/player.xpm42"
 # define COLLECTIBLE_TEXTURE "./textures/collectible.xpm42"
 # define EXIT_TEXTURE "./textures/exit.xpm42"
+# define ENEMY_TEXTURE "./textures/enemy.xpm42"
 # define TILE_SIZE 32
 
 # define WALL '1'
 # define EMPTY '0'
 # define PLAYER 'P'
+# define ENEMY 'X'
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
 
@@ -79,6 +81,7 @@ typedef struct s_textures
 	void *wall_img;       // Imagen del muro
 	void *background_img; // Imagen del fondo
 	void *player_img;     // Imagen del jugador
+	void *enemy_img;      // Imagen del enemigo
 	void *exit_img;       // Imagen de la salida
 	void *caracter_img;   // Imagen de los coleccionables
 }		t_textures;
@@ -116,7 +119,7 @@ int		valid_essential_characters(t_map *map);
 int		is_rectangular(t_map *map);
 int		is_map_surrounded_by_walls(t_map *map);
 bool	find_start_point(t_map *map);
-void	flood_fill(t_map *map, int x, int y, char to_fill);
+void	flood_fill(t_map *map, int x, int y);
 bool	check_all_collectible(t_map *map);
 bool	is_exit_reachable(t_map *map);
 char	**copy_map_matrix(t_map *map);

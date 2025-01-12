@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 01:59:42 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 15:40:43 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/12 22:58:11 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,17 @@ bool	is_exit_reachable(t_map *map)
 		while (x < map->cols)
 		{
 			if (map->matrix[y][x] == 'E')
-				return (true);
+			{
+				printf("No se encuentra la salida (%d, %d)\n", x, y);
+				return (false);
+			}
 			x++;
 		}
 		y++;
 	}
-	printf("No se encuentra la salida (%d, %d)\n", x, y);
-	return (false);
+	printf("Salida encontrada\n");
+	return (true);
 }
-
 char	**copy_map_matrix(t_map *map)
 {
 	char	**copy;
@@ -90,11 +92,15 @@ bool	validate_path(t_map *map, int start_x, int start_y)
 		return (false);
 	map_copy = *map;
 	map_copy.matrix = matrix_copy;
-	flood_fill(&map_copy, start_x, start_y, map->matrix[start_y][start_x]);
-	valid = check_all_collectible(&map_copy) && is_exit_reachable(&map_copy);
+	flood_fill(&map_copy, start_x, start_y);
+	print_map(&map_copy);
+	printf("check_all_collectible: %d\n", check_all_collectible(&map_copy));
+	printf("is_exit_reachable: %d\n", is_exit_reachable(&map_copy));
+	valid = (check_all_collectible(&map_copy) && is_exit_reachable(&map_copy));
 	y = 0;
 	while (y < map->rows)
 		free(matrix_copy[y++]);
 	free(matrix_copy);
+	printf("valid: %d\n", valid);
 	return (valid);
 }

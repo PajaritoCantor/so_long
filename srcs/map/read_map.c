@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 00:08:36 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 17:59:35 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/11 00:04:40 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*read_all_lines(char *file_path)
 	file_content = ft_strdup("");
 	fd = open_file(file_path);
 	if (fd < 0 || !file_content)
-		return (NULL);
+		return (free(file_content), NULL);
 	while (file_content)
 	{
 		line = get_next_line(fd);

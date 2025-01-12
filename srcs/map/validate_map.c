@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 14:49:34 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 19:52:50 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/11 01:10:19 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	valid_essential_characters(t_map *map)
 	int	row;
 	int	col;
 	int	c;
-	int	essentials[3] = {0, 0, 0};
+	int	essentials[4] = {0, 0, 0, 0};
 
 	row = 0;
 	while (row < map->rows)
@@ -73,11 +73,14 @@ int	valid_essential_characters(t_map *map)
 				essentials[1]++;
 			else if (c == 'C')
 				essentials[2]++;
+			else if (c == 'X')
+				essentials[3]++;
 			col++;
 		}
 		row++;
 	}
-	return (essentials[0] == 1 && essentials[1] == 1 && essentials[2] > 0);
+	return (essentials[0] == 1 && essentials[1] == 1 && essentials[2] > 0
+		&& essentials[3] > 0);
 }
 
 int	check_valid_characters(t_map *map)
@@ -97,7 +100,8 @@ int	check_valid_characters(t_map *map)
 		while (col < map->cols)
 		{
 			c = map->matrix[row][col];
-			if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
+			if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C'
+				&& c != 'X')
 				return (0);
 			col++;
 		}
