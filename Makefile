@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2025/01/10 17:45:53 by jurodrig         ###   ########.fr        #
+#    Updated: 2025/01/13 17:58:53 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,4 +109,3 @@ re: fclean all
 -include $(DEPS)
 
 .SILENT: all clean fclean
-

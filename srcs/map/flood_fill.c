@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 23:05:59 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/12 22:45:44 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:24:00 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@ bool	find_start_point(t_map *map)
 	int	y;
 	int	x;
 
-	{
-		if (!map || !map->matrix)
-		{
-			ft_error("Error: Mapa no inicializado.\n", 1);
-			return (false);
-		}
-	}
 	y = 0;
 	while (y < map->rows)
 	{
@@ -50,10 +43,7 @@ void	flood_fill(t_map *map, int x, int y)
 {
 	if (map->matrix[y][x] == '1' || map->matrix[y][x] == 'F'
 		|| map->matrix[y][x] == 'X')
-	{
-		printf("[%d, %d]\n", x, y);
 		return ;
-	}
 	map->matrix[y][x] = 'F';
 	flood_fill(map, x - 1, y);
 	flood_fill(map, x + 1, y);

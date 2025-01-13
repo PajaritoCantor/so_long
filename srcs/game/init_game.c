@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 20:56:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 21:03:36 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:17:09 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_game(t_game *game)
 	game->player = ft_calloc(1, sizeof(t_position));
 	if (!game->player)
 		ft_error("Error al asignar memoria para el jugador", 1);
-	search_player_and_collectibles(game);
+	//search_player_and_collectibles(game);
 	render_map(game);
 	if (!game->player)
 		ft_error("Error al asignar memoria para el jugador", 1);

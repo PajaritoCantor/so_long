@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:09:25 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/11 01:08:10 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:32:41 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	draw_player(t_game *game)
 {
+	if (!game->textures->player_img)
+		ft_error("Player texture not found.", 1);
 	mlx_image_to_window(game->window->mlx, game->textures->player_img,
 		game->player->position_x * TILE_SIZE, game->player->position_y
 		* TILE_SIZE);
@@ -40,10 +42,8 @@ void	render_tile(t_game *game, char tile, int x, int y)
 
 void	render_map(t_game *game)
 {
-	//apply_gravity(game);
-
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < game->map->rows)

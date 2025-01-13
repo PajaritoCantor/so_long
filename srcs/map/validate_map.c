@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 14:49:34 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/11 01:10:19 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:34:48 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	is_rectangular(t_map *map)
 	size_t	expected_length;
 	int		row;
 
+	if (!map->matrix || !map->matrix[0])
+		return (0);
 	expected_length = ft_strlen(map->matrix[0]);
 	row = 0;
 	while (row < map->rows)
@@ -52,31 +54,34 @@ int	is_map_surrounded_by_walls(t_map *map)
 	}
 	return (1);
 }
+void	count_essentials(char *row, int cols, int *essentials)
+{
+	int	col;
+
+	col = 0;
+	while (col < cols)
+	{
+		if (row[col] == 'P')
+			essentials[0]++;
+		else if (row[col] == 'E')
+			essentials[1]++;
+		else if (row[col] == 'C')
+			essentials[2]++;
+		else if (row[col] == 'X')
+			essentials[3]++;
+		col++;
+	}
+}
 
 int	valid_essential_characters(t_map *map)
 {
 	int	row;
-	int	col;
-	int	c;
 	int	essentials[4] = {0, 0, 0, 0};
 
 	row = 0;
 	while (row < map->rows)
 	{
-		col = 0;
-		while (col < map->cols)
-		{
-			c = map->matrix[row][col];
-			if (c == 'P')
-				essentials[0]++;
-			else if (c == 'E')
-				essentials[1]++;
-			else if (c == 'C')
-				essentials[2]++;
-			else if (c == 'X')
-				essentials[3]++;
-			col++;
-		}
+		count_essentials(map->matrix[row], map->cols, essentials);
 		row++;
 	}
 	return (essentials[0] == 1 && essentials[1] == 1 && essentials[2] > 0

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:32:30 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 17:59:13 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/13 00:13:38 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ int	copy_lines_to_matrix(char **map_matrix, char **lines, int map_rows,
 	i = 0;
 	while (i < map_rows)
 	{
+		if (lines[i][0] == '\0')
+		{
+			ft_printf("Error: empty line at row %d\n", i);
+			free_matrix(map_matrix, i);
+			free(map->matrix);
+			return (0);
+		}
 		map_matrix[i] = ft_strdup(lines[i]);
 		if (!map_matrix[i])
 		{
