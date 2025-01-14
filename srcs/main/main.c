@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/12 22:55:17 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 00:23:06 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 	t_game	*game;
 
 	if (argc != 2)
-		return (ft_error("Usage: ./game <map_file.ber>\n", 1));
+		return (ft_error(USAGE, 1));
 	if (verificity_ber(argv[1]))
 		return (ft_error("Error: Invalid map file extension.\n", 1));
 	map = read_map(argv[1]);
@@ -59,6 +59,9 @@ int	main(int argc, char *argv[])
 		return (free(game), ft_error("Error: Memory allocation failed.\n", 1));
 	game->map = map;
 	init_game(game);
+	render_map(game);
+	if (!game->player)
+		ft_error("Error al asignar memoria para el jugador", 1);
 	mlx_key_hook(game->window->mlx, handle_keypress, game);
 	mlx_close_hook(game->window->mlx, close_handler, game);
 	mlx_loop(game->window->mlx);

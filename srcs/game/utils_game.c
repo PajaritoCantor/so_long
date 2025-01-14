@@ -1,17 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_handler.c                                    :+:      :+:    :+:   */
+/*   utils_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:20:27 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/10 15:38:41 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/13 19:53:33 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	free_images(t_game *game)
+{
+	if (game->textures->wall_img)
+		mlx_delete_image(game->window->mlx, game->textures->wall_img);
+	if (game->textures->background_img)
+		mlx_delete_image(game->window->mlx, game->textures->background_img);
+	if (game->textures->player_img)
+		mlx_delete_image(game->window->mlx, game->textures->player_img);
+	if (game->textures->enemy_img)
+		mlx_delete_image(game->window->mlx, game->textures->enemy_img);
+	if (game->textures->caracter_img)
+		mlx_delete_image(game->window->mlx, game->textures->caracter_img);
+	if (game->textures->exit_img)
+		mlx_delete_image(game->window->mlx, game->textures->exit_img);
+}
 void	end_game(t_game *game, const char *message)
 {
 	int	y;
@@ -42,7 +57,7 @@ void	end_game(t_game *game, const char *message)
 
 void	close_handler(void *param)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)param;
 	end_game(game, "Game closed!");

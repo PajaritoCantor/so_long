@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 23:05:59 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/12 22:45:44 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 00:19:05 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@ bool	find_start_point(t_map *map)
 	int	y;
 	int	x;
 
-	{
-		if (!map || !map->matrix)
-		{
-			ft_error("Error: Mapa no inicializado.\n", 1);
-			return (false);
-		}
-	}
 	y = 0;
 	while (y < map->rows)
 	{

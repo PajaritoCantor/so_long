@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 01:59:42 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/12 22:58:11 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 01:02:51 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ bool	is_exit_reachable(t_map *map)
 	printf("Salida encontrada\n");
 	return (true);
 }
+
 char	**copy_map_matrix(t_map *map)
 {
 	char	**copy;

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 14:49:34 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/11 01:10:19 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 01:04:10 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,11 @@ int	is_map_surrounded_by_walls(t_map *map)
 	return (1);
 }
 
-int	valid_essential_characters(t_map *map)
+void	count_essential_characters(t_map *map, int *essentials)
 {
 	int	row;
 	int	col;
 	int	c;
-	int	essentials[4] = {0, 0, 0, 0};
 
 	row = 0;
 	while (row < map->rows)
@@ -79,6 +78,17 @@ int	valid_essential_characters(t_map *map)
 		}
 		row++;
 	}
+}
+
+int	valid_essential_characters(t_map *map)
+{
+	int	essentials[4];
+
+	essentials[0] = 0;
+	essentials[1] = 0;
+	essentials[2] = 0;
+	essentials[3] = 0;
+	count_essential_characters(map, essentials);
 	return (essentials[0] == 1 && essentials[1] == 1 && essentials[2] > 0
 		&& essentials[3] > 0);
 }
