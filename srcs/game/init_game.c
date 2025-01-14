@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 20:56:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 01:47:54 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:31:37 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ void	init_game(t_game *game)
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->window->mlx = mlx_init(width, height, "SO_LONG", true);
 	if (!game->window->mlx)
-		ft_error("Error inicializando la ventana", 1);
+		ft_error(ERROR_MLX, 1);
 	game->textures = ft_calloc(1, sizeof(t_textures));
 	if (!game->textures)
-		ft_error("Error al asignar memoria para las texturas", 1);
+		ft_error(ERROR_MEMORY_ALLOCATION, 1);
 	load_textures(game);
 	convert_textures(game);
 	game->player = ft_calloc(1, sizeof(t_position));
 	if (!game->player)
-		ft_error("Error al asignar memoria para el jugador", 1);
+		ft_error(ERROR_MEMORY_ALLOCATION, 1);
 	game->player->current_texture = game->textures->player_img;
 	if (!game->player->current_texture)
-		ft_error("Error al asignar textura al jugador", 1);
+		ft_error(ERROR_ASSIGN_TEXTURES, 1);
 	search_player_and_collectibles(game);
 }

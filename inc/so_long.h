@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 13:02:24 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:13:35 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,19 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define USAGE "Error\nUsage: ./so_long [map.ber], 36"
-# define ERROR_MAP "Error\nInvalid map"
+# define USAGE "\nUsage:./so_long [map.ber], 36"
+# define ERROR_MAP "\nInvalid map"
+# define ERROR_MAP_FILE_EXTENSION "\nInvalid map file extension.\n"
 # define ERROR_MAP_READ "Reading map\n"
-# define ERROR_MLX "Error initialing MLX"
-# define ERROR_WINDOW "Error creating window"
-# define SUCCESS "\033[1;32m✅ Success: Funtion finished well!\n\033[0m" // Verde
-# define ERROR "\033[1;31m❌ Error: Error in function!\n\033[0m"         // Rojo
+# define ERROR_START_POINT "Start point not found\n"
+# define ERROR_MEMORY_ALLOCATION "Memory allocation error\n"
+# define ERROR_MLX "initialing MLX"
+# define ERROR_LOAD_TEXTURES "load textures\n"
+# define ERROR_CONVERT_TEXTURES "missing textures\n"
+# define ERROR_ASSIGN_TEXTURES "assigning textures\n"
+# define ERROR_WINDOW "creating window"
+# define SUCCESS "\033[1;32m✅ Success: Funtion finished well!\n\033[0m"
+# define ERROR "\033[1;31m❌ Error: Error in function!\n\033[0m"
 # define WARNING "\033[1;33m⚠️ Warning: Warning in function!\n\033[0m"
 
 # define WALL_TEXTURE "./textures/wall.xpm42"

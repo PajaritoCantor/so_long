@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 00:23:06 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:06:25 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		return (ft_error(USAGE, 1));
 	if (verificity_ber(argv[1]))
-		return (ft_error("Error: Invalid map file extension.\n", 1));
+		return (ft_error(USAGE, 1));
 	map = read_map(argv[1]);
 	if (!map)
-		return (ft_error("Error: Could not load map.\n", 1));
+		return (ft_error(ERROR_MAP_READ, 1));
 	if (!find_start_point(map))
-		return (free_map(map), ft_error("No start point found.\n", 1));
+		return (free_map(map), ft_error(ERROR_START_POINT, 1));
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (free(game), ft_error("Error: Memory allocation failed.\n", 1));
+		return (free(game), ft_error(ERROR_MEMORY_ALLOCATION, 1));
 	game->map = map;
 	init_game(game);
 	render_map(game);
