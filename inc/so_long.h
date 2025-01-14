@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 01:06:17 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:02:24 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,10 @@ int				allocate_matrix(char ***matrix, int rows);
 int				copy_lines_to_matrix(char **matrix, char **lines, int rows,
 					t_map *map);
 int				validate_map(t_map *map);
+void			count_essential_characters(t_map *map, int *essentials);
 int				check_valid_characters(t_map *map);
 int				valid_essential_characters(t_map *map);
-void			count_essential_characters(t_map *map, int *essentials);
+int				valid_essential_characters(t_map *map);
 int				is_rectangular(t_map *map);
 int				is_map_surrounded_by_walls(t_map *map);
 bool			find_start_point(t_map *map);
@@ -143,9 +144,9 @@ void			render_tile(t_game *game, char tile, int x, int y);
 void			draw_player(t_game *game);
 
 void			handle_keypress(mlx_key_data_t keydata, void *param);
-void			update_texture_vertical(t_game *game, int dy);
-void			update_texture_right(t_game *game);
-void			update_texture_left(t_game *game);
+void			update_sprite_vertical(t_game *game, int dy);
+void			update_sprite_right(t_game *game);
+void			update_sprite_left(t_game *game);
 void			detect_position(t_game *game, int x, int y);
 void			move_player(t_game *game, int dx, int dy);
 void			close_handler(void *param);

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:09:25 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 01:06:04 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 01:37:05 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	render_map(t_game *game)
 	int	x;
 	int	y;
 
-	// apply_gravity(game);
 	y = 0;
 	while (y < game->map->rows)
 	{

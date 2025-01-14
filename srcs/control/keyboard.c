@@ -6,51 +6,11 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:52:26 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/13 23:45:39 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:00:49 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	update_texture_vertical(t_game *game, int dy)
-{
-	if (dy == -1)
-		game->player->current_texture = game->textures->player_img;
-	else if (dy == 1)
-		game->player->current_texture = game->textures->player_img;
-}
-
-void	update_texture_right(t_game *game)
-{
-	static int	right_frame;
-
-	right_frame++;
-	if (right_frame == 1)
-		game->player->current_texture = game->textures->player_img_right[0];
-	else if (right_frame == 2)
-		game->player->current_texture = game->textures->player_img_right[1];
-	else
-	{
-		game->player->current_texture = game->textures->player_img;
-		right_frame = 0;
-	}
-}
-
-void	update_texture_left(t_game *game)
-{
-	static int	left_frame;
-
-	left_frame++;
-	if (left_frame == 1)
-		game->player->current_texture = game->textures->player_img_left[0];
-	else if (left_frame == 2)
-		game->player->current_texture = game->textures->player_img_left[1];
-	else
-	{
-		game->player->current_texture = game->textures->player_img;
-		left_frame = 0;
-	}
-}
 
 void	detect_position(t_game *game, int x, int y)
 {
@@ -82,11 +42,11 @@ void	move_player(t_game *game, int dx, int dy)
 		game->player->position_x = new_x;
 		game->player->position_y = new_y;
 		if (dx == -1)
-			update_texture_left(game);
+			update_sprite_left(game);
 		else if (dx == 1)
-			update_texture_right(game);
+			update_sprite_right(game);
 		else if (dy == -1 || dy == 1)
-			update_texture_vertical(game, dy);
+			update_sprite_vertical(game, dy);
 		game->player->moves++;
 		printf("Moves: %d\n", game->player->moves);
 		detect_position(game, new_x, new_y);

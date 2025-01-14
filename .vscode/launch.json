@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/sgoinfre/students/jurodrig/so_long_git/srcs/map",
-      "program": "/sgoinfre/students/jurodrig/so_long_git/srcs/map/build/Debug/outDebug",
+      "cwd": "/home/jurodrig/sgoinfre/so_long_git/srcs/game",
+      "program": "/home/jurodrig/sgoinfre/so_long_git/srcs/game/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

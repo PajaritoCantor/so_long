@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2025/01/10 17:45:53 by jurodrig         ###   ########.fr        #
+#    Updated: 2025/01/14 13:01:47 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ IFLAGS  = -I$(INC) -I$(LIBFT_DIR) -I$(MLX_INCLUDE)
 GAME_FILES      := init_game render textures utils_game
 CONTROL_FILES  	:= keyboard utils_control
 MAIN_FILES      := main
-MAP_FILES       := read_map set_map_data utils_map validate_map flood_fill path_validation
+MAP_FILES       := read_map set_map_data utils_map validate_map valid_characters flood_fill path_validation
 
 SRCS_FILES+=$(addprefix $(GAME_DIR), $(GAME_FILES))
 SRCS_FILES+=$(addprefix $(CONTROL_DIR), $(CONTROL_FILES))

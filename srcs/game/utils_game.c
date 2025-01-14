@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:20:27 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/13 19:53:33 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:07:50 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	free_images(t_game *game)
 	if (game->textures->exit_img)
 		mlx_delete_image(game->window->mlx, game->textures->exit_img);
 }
+
 void	end_game(t_game *game, const char *message)
 {
 	int	y;
