@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 19:13:35 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:44:19 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "MLX42/MLX42.h"
 # include "libft.h"
+# include <bits/types.h>
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -26,6 +27,9 @@
 # define ERROR_MAP_FILE_EXTENSION "\nInvalid map file extension.\n"
 # define ERROR_MAP_READ "Reading map\n"
 # define ERROR_START_POINT "Start point not found\n"
+# define ERROR_COLLECTIBLE_NOT_FOUND "collectible not found\n"
+# define ERROR_EXIT_NOT_FOUND "exit not found\n"
+# define EXIT_FOUND "exit found\n"
 # define ERROR_MEMORY_ALLOCATION "Memory allocation error\n"
 # define ERROR_MLX "initialing MLX"
 # define ERROR_LOAD_TEXTURES "load textures\n"
@@ -77,6 +81,8 @@ typedef struct s_position
 	int			on_ground;
 	int			moves;
 	void		*current_texture;
+	int			prev_position_x;
+	int			prev_position_y;
 }				t_position;
 
 typedef struct s_map
@@ -114,7 +120,6 @@ typedef struct s_game
 	t_textures	*textures;
 	t_position	*player;
 	int			gravity_timer;
-	int			jump_height;
 }				t_game;
 
 t_map			*read_map(char *file_path);

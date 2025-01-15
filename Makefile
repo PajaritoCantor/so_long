@@ -6,7 +6,7 @@
 #    By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 22:22:39 by jurodrig          #+#    #+#              #
-#    Updated: 2025/01/14 13:01:47 by jurodrig         ###   ########.fr        #
+#    Updated: 2025/01/15 20:08:50 by jurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,8 @@ MLX_LIB = $(MLX_BUILD)libmlx42.a
 #===============================COMPILER============================================#
 
 CC      = gcc
-CFLAGS  = -Wextra -Werror -Wall -g3  -fsanitize=address
-LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_BUILD) -lmlx42 -ldl -lglfw -pthread -lm
+CFLAGS  = -Wextra -Werror -Wall -Wunreachable-code -Ofast -g3 #-fsanitize=address
+LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_BUILD) -lmlx42 -ldl -lglfw -lm
 MKDIR   = mkdir -p
 IFLAGS  = -I$(INC) -I$(LIBFT_DIR) -I$(MLX_INCLUDE)
 

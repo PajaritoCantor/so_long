@@ -60,7 +60,9 @@
     "libft.h": "c",
     "so_long.h": "c",
     "mlx.h": "c",
-    "stdbool.h": "c"
+    "stdbool.h": "c",
+    "time.h": "c",
+    "stdio.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "makefile.configureOnOpen": false

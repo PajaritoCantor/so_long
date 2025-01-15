@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:52:26 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 19:31:29 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/15 20:04:32 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,36 @@ void	detect_position(t_game *game, int x, int y)
 	{
 		if (game->player->collected == game->map->num_collectibles)
 			end_game(game, "You win!");
+		else
+			mlx_image_to_window(game->window->mlx,
+				game->textures->background_img, x * TILE_SIZE, y * TILE_SIZE);
 	}
 	return ;
+}
+
+void	render_player_path(t_game *game)
+{
+	int	prev_x;
+	int	prev_y;
+	int	new_x;
+	int	new_y;
+
+	prev_x = game->player->prev_position_x;
+	prev_y = game->player->prev_position_y;
+	new_x = game->player->position_x;
+	new_y = game->player->position_y;
+	if (game->map->matrix[prev_y][prev_x] == EXIT)
+	{
+		mlx_image_to_window(game->window->mlx, game->textures->exit_img, prev_x
+			* TILE_SIZE, prev_y * TILE_SIZE);
+	}
+	else
+	{
+		mlx_image_to_window(game->window->mlx, game->textures->background_img,
+			prev_x * TILE_SIZE, prev_y * TILE_SIZE);
+	}
+	mlx_image_to_window(game->window->mlx, game->player->current_texture, new_x
+		* TILE_SIZE, new_y * TILE_SIZE);
 }
 
 void	move_player(t_game *game, int dx, int dy)
@@ -39,6 +67,8 @@ void	move_player(t_game *game, int dx, int dy)
 	if (new_y >= 0 && new_y < game->map->rows && new_x >= 0
 		&& new_x < game->map->cols && game->map->matrix[new_y][new_x] != WALL)
 	{
+		game->player->prev_position_x = game->player->position_x;
+		game->player->prev_position_y = game->player->position_y;
 		game->player->position_x = new_x;
 		game->player->position_y = new_y;
 		if (dx == -1)
@@ -48,10 +78,9 @@ void	move_player(t_game *game, int dx, int dy)
 		else if (dy == -1 || dy == 1)
 			update_sprite_vertical(game, dy);
 		game->player->moves++;
-		printf("Moves: %d\n", game->player->moves);
+		ft_printf("Moves: %d\n", game->player->moves);
 		detect_position(game, new_x, new_y);
-		render_map(game);
-		display_moves(game);
+		render_player_path(game);
 	}
 }
 

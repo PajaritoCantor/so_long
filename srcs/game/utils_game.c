@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:20:27 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 19:31:31 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:15:10 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	end_game(t_game *game, const char *message)
 	{
 		if (game->window->mlx)
 			mlx_close_window(game->window->mlx);
+		mlx_terminate(game->window->mlx);
 		free(game->window);
 	}
 	if (game->player)

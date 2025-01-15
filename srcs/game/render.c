@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:09:25 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 01:37:05 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:38:23 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	draw_player(t_game *game)
 {
-	if (!game->player)
-		ft_error("Error: Player structure is NULL.", 1);
-	if (!game->player->current_texture)
-		ft_error("Error: Player texture not set.", 1);
-	if (!game->window->mlx)
-		ft_error("Error: MLX instance is NULL.", 1);
 	if (mlx_image_to_window(game->window->mlx, game->player->current_texture,
 			game->player->position_x * TILE_SIZE, game->player->position_y
 			* TILE_SIZE) < 0)

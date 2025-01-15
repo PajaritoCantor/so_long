@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 19:06:25 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/15 20:22:11 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ int	main(int argc, char *argv[])
 	render_map(game);
 	if (!game->player)
 		ft_error("Error al asignar memoria para el jugador", 1);
-	mlx_key_hook(game->window->mlx, handle_keypress, game);
 	mlx_close_hook(game->window->mlx, close_handler, game);
 	mlx_loop(game->window->mlx);
-	return (0);
+	mlx_terminate(game->window->mlx);
+	(freedom(NULL, (void *)&map), free(game));
+	return (EXIT_SUCCESS);
 }

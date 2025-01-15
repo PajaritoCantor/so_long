@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 20:56:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 19:31:37 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/15 20:06:56 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void	init_game(t_game *game)
 	if (!game->player->current_texture)
 		ft_error(ERROR_ASSIGN_TEXTURES, 1);
 	search_player_and_collectibles(game);
+	mlx_key_hook(game->window->mlx, handle_keypress, game);
 }
