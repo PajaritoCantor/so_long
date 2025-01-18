@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/18 14:44:01 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:11:54 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int	main(int argc, char *argv[])
 		return (ft_error(USAGE, 1));
 	map = read_map(argv[1]);
 	if (!map)
-		return (ft_printf("Hola"));
+		return (ft_printf("Error map"));
 	if (!find_start_point(map))
-		return (free_map(map), ft_printf("dos"));
+		return (free_map(map), ft_printf("Error start point"));
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (ft_printf("tres"));
+		return (ft_printf("Error allocate memory"));
 	game->map = map;
 	init_game(game);
 	render_map(game);
