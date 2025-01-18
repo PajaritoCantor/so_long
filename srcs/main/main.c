@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/18 15:11:54 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/18 22:48:52 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ int	verificity_ber(char *file_name)
 	size_t	len;
 
 	len = ft_strlen(file_name);
-	if (len < 4)
+	if (len <= 4)
 		return (1);
-	return (ft_strncmp(file_name + len - 4, ".ber", 4));
+	return (ft_strncmp(file_name + len - 4, ".ber", 4) != 0 || file_name[len
+			- 5] == '/');
 }
 
 int	main(int argc, char *argv[])
@@ -51,12 +52,12 @@ int	main(int argc, char *argv[])
 		return (ft_error(USAGE, 1));
 	map = read_map(argv[1]);
 	if (!map)
-		return (ft_printf("Error map"));
+		return (ft_printfd(1, ERROR_MAP));
 	if (!find_start_point(map))
-		return (free_map(map), ft_printf("Error start point"));
+		return (free_map(map), ft_printfd(1, ERROR_START_POINT));
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (ft_printf("Error allocate memory"));
+		return (ft_printfd(1, ERROR_MEMORY_ALLOCATION));
 	game->map = map;
 	init_game(game);
 	render_map(game);

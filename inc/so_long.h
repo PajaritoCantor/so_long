@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/18 15:03:45 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/18 22:09:22 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define USAGE "\nUsage:./so_long [map.ber], 36"
+# define USAGE "\nUsage:./so_long [map.ber]"
 # define ERROR_MAP "\nInvalid map"
 # define ERROR_MAP_FILE_EXTENSION "\nInvalid map file extension.\n"
 # define ERROR_MAP_READ "Reading map\n"

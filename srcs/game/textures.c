@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 01:17:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/18 14:28:32 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/18 22:48:35 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	load_textures(t_game *game)
 		|| !game->textures->player_img_left[1]
 		|| !game->textures->player_img_right[0]
 		|| !game->textures->player_img_right[1])
-		ft_printf("ERROR_LOAD_TEXTURES, 1");
+		ft_printfd(1, ERROR_LOAD_TEXTURES);
 }
 
 void	check_textures_error(t_game *game)
@@ -60,7 +60,7 @@ void	check_textures_error(t_game *game)
 		|| !game->textures->player_img_left[1]
 		|| !game->textures->player_img_right[0]
 		|| !game->textures->player_img_right[1])
-		(free_textures(game), ft_error(ERROR_CONVERT_TEXTURES, 1));
+		(free_textures(game), ft_printfd(1, ERROR_CONVERT_TEXTURES));
 }
 
 void	convert_textures_two(t_game *game, void *temp)
