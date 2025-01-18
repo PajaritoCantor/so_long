@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:24:35 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/10/23 13:59:30 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:58:29 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static int	ft_countwords(char const *s, char c)
 	}
 	return (count);
 }
-
 void	*ft_free_strs(char **strs)
 {
 	int	i;
@@ -54,7 +53,7 @@ void	*ft_free_strs(char **strs)
 		i++;
 	}
 	free(strs);
-	return (NULL);
+	return (NULL); 
 }
 
 char	**ft_split(char const *s, char c)

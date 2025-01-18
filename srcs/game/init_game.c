@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 20:56:07 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/15 20:06:56 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:45:49 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,22 @@ void	init_game(t_game *game)
 	height = game->map->rows * TILE_SIZE;
 	game->window = ft_calloc(1, sizeof(t_window));
 	if (!game->window)
-		ft_error(ERROR_WINDOW, 1);
+		end_game(game, ERROR_WINDOW);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->window->mlx = mlx_init(width, height, "SO_LONG", true);
 	if (!game->window->mlx)
-		ft_error(ERROR_MLX, 1);
+		end_game(game, ERROR_MLX);
 	game->textures = ft_calloc(1, sizeof(t_textures));
 	if (!game->textures)
-		ft_error(ERROR_MEMORY_ALLOCATION, 1);
+		end_game(game, ERROR_MEMORY_ALLOCATION);
 	load_textures(game);
 	convert_textures(game);
 	game->player = ft_calloc(1, sizeof(t_position));
 	if (!game->player)
-		ft_error(ERROR_MEMORY_ALLOCATION, 1);
+		end_game(game, ERROR_MEMORY_ALLOCATION);
 	game->player->current_texture = game->textures->player_img;
 	if (!game->player->current_texture)
-		ft_error(ERROR_ASSIGN_TEXTURES, 1);
+		end_game(game, ERROR_ASSIGN_TEXTURES);
 	search_player_and_collectibles(game);
 	mlx_key_hook(game->window->mlx, handle_keypress, game);
 }

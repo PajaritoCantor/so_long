@@ -6,11 +6,19 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:52:26 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/15 20:04:32 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:01:15 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	close_handler(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	end_game(game, "Game closed!");
+}
 
 void	detect_position(t_game *game, int x, int y)
 {

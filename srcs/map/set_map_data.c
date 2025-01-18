@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:32:30 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/14 14:30:35 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:25:06 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	set_map_data(t_map *map, char **lines)
 	if (!lines || !lines[0])
 		return (0);
 	if (!allocate_lines(&map_matrix, lines, &map_rows))
-		ft_error("Error, Memory allocation failed\n", 1);
+		ft_printf("Error: Memory allocation failed\n");
 	if (!copy_lines_to_matrix(map_matrix, lines, map_rows, map))
 		return (0);
 	map_matrix[map_rows] = NULL;

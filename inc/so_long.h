@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/15 19:44:19 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:03:45 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ void			close_handler(void *param);
 void			end_game(t_game *game, const char *message);
 void			move_player(t_game *game, int dx, int dy);
 void			detect_position(t_game *game, int x, int y);
-void			display_moves(t_game *game);
 
 void			freedom(void **p, void **p2);
 void			free_map(t_map *map);

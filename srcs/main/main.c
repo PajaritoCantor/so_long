@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:34:47 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/15 20:22:11 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:44:01 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,17 @@ int	main(int argc, char *argv[])
 		return (ft_error(USAGE, 1));
 	map = read_map(argv[1]);
 	if (!map)
-		return (ft_error(ERROR_MAP_READ, 1));
+		return (ft_printf("Hola"));
 	if (!find_start_point(map))
-		return (free_map(map), ft_error(ERROR_START_POINT, 1));
+		return (free_map(map), ft_printf("dos"));
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		return (free(game), ft_error(ERROR_MEMORY_ALLOCATION, 1));
+		return (ft_printf("tres"));
 	game->map = map;
 	init_game(game);
 	render_map(game);
-	if (!game->player)
-		ft_error("Error al asignar memoria para el jugador", 1);
 	mlx_close_hook(game->window->mlx, close_handler, game);
 	mlx_loop(game->window->mlx);
-	mlx_terminate(game->window->mlx);
-	(freedom(NULL, (void *)&map), free(game));
-	return (EXIT_SUCCESS);
+	end_game(game, NULL);
+	return (1);
 }

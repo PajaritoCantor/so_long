@@ -2,14 +2,72 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "(gdb) Launch Parent",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}\\so_long",
+      "args": ["maps/protomap.ber"],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build"
+    },
+    {
+      "name": "(gdb) Launch Child",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}\\so_long",
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        },
+        {
+          "description": "In this mode GDB will be attached to both processes after a call to fork() or vfork().",
+          "text": "-gdb-set detach-on-fork on",
+          "ignoreFailures": true
+        },
+        {
+          "description": "The new process is debugged after a fork. The parent process runs unimpeded.",
+          "text": "-gdb-set follow-fork-mode child",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": "/home/jurodrig/sgoinfre/so_long_git/srcs/game",
-      "program": "/home/jurodrig/sgoinfre/so_long_git/srcs/game/build/Debug/outDebug",
+      "externalConsole": true,
+      "cwd": "c:/Users/Usuario/Desktop/Proyectos/c/minishell/minishell/src/fsm",
+      "program": "c:/Users/Usuario/Desktop/Proyectos/c/minishell/minishell/src/fsm/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
