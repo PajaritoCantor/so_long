@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_textures.c                                    :+:      :+:    :+:   */
+/*   free_textures_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:02:32 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/21 19:52:31 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:47:17 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	free_images(t_game *game)
 {
@@ -22,6 +22,8 @@ void	free_images(t_game *game)
 		mlx_delete_image(game->window->mlx, game->textures->background_img);
 	if (game->textures->player_img)
 		mlx_delete_image(game->window->mlx, game->textures->player_img);
+	if (game->textures->enemy_img)
+		mlx_delete_image(game->window->mlx, game->textures->enemy_img);
 	if (game->textures->caracter_img)
 		mlx_delete_image(game->window->mlx, game->textures->caracter_img);
 	if (game->textures->exit_img)

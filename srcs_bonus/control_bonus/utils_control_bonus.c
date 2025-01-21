@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_control.c                                    :+:      :+:    :+:   */
+/*   utils_control_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:06:23 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/15 20:22:33 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:47:04 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	update_sprite_vertical(t_game *game, int dy)
 {

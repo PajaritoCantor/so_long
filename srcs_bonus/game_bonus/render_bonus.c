@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:09:25 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/21 18:51:49 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:47:25 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	draw_player(t_game *game)
 {
@@ -30,6 +30,9 @@ void	render_tile(t_game *game, char tile, int x, int y)
 			* TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'E')
 		mlx_image_to_window(game->window->mlx, game->textures->exit_img, x
+			* TILE_SIZE, y * TILE_SIZE);
+	else if (tile == 'X')
+		mlx_image_to_window(game->window->mlx, game->textures->enemy_img, x
 			* TILE_SIZE, y * TILE_SIZE);
 	else
 		mlx_image_to_window(game->window->mlx, game->textures->background_img, x

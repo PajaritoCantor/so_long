@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/21 19:52:38 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:51:57 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "MLX42/MLX42.h"
 # include "libft.h"
@@ -51,11 +51,13 @@
 # define PLAYER_RIGHT_TEXTURE_3 "./textures/player_walk_right_3.xpm42"
 # define COLLECTIBLE_TEXTURE "./textures/collectible.xpm42"
 # define EXIT_TEXTURE "./textures/exit.xpm42"
+# define ENEMY_TEXTURE "./textures/enemy.xpm42"
 # define TILE_SIZE 32
 
 # define WALL '1'
 # define EMPTY '0'
 # define PLAYER 'P'
+# define ENEMY 'X'
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
 
@@ -97,6 +99,7 @@ typedef struct s_textures
 	void		*wall_img;
 	void		*background_img;
 	void		*player_img;
+	void		*enemy_img;
 	void		*exit_img;
 	void		*caracter_img;
 	void		*player_img_left[2];

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   keyboard_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:52:26 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/21 19:49:56 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:46:58 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	close_handler(void *param)
 {
@@ -27,6 +27,8 @@ void	detect_position(t_game *game, int x, int y)
 		game->map->matrix[y][x] = EMPTY;
 		game->player->collected++;
 	}
+	if (game->map->matrix[y][x] == ENEMY)
+		end_game(game, "You lose!");
 	else if (game->map->matrix[y][x] == EXIT)
 	{
 		if (game->player->collected == game->map->num_collectibles)
@@ -77,6 +79,12 @@ void	move_player(t_game *game, int dx, int dy)
 		game->player->prev_position_y = game->player->position_y;
 		game->player->position_x = new_x;
 		game->player->position_y = new_y;
+		if (dx == -1)
+			update_sprite_left(game);
+		else if (dx == 1)
+			update_sprite_right(game);
+		else if (dy == -1 || dy == 1)
+			update_sprite_vertical(game, dy);
 		game->player->moves++;
 		ft_printf("Moves: %d\n", game->player->moves);
 		detect_position(game, new_x, new_y);
