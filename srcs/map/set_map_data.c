@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:32:30 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/18 14:25:06 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/22 05:36:15 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,19 @@ int	allocate_matrix(char ***map_matrix, int map_rows)
 {
 	if (map_rows <= 0)
 	{
-		ft_printf("Error: invalid number of rows: %d\n", map_rows);
+		ft_printf("Error: Map dimensions are invalid\n");
 		return (0);
 	}
 	*map_matrix = ft_calloc(map_rows + 1, sizeof(char *));
-	return (*map_matrix != NULL);
-}
-
-int	allocate_lines(char ***map_matrix, char **lines, int *map_rows)
-{
-	*map_rows = count_lines(lines);
-	if (!allocate_matrix(map_matrix, *map_rows))
+	if (!*map_matrix)
+	{
+		ft_printf("Error: Memory allocation for matrix failed\n");
 		return (0);
+	}
 	return (1);
 }
 
-int	copy_lines_to_matrix(char **map_matrix, char **lines, int map_rows,
-		t_map *map)
+int	copy_lines_to_matrix(char **map_matrix, char **lines, int map_rows)
 {
 	int	i;
 
@@ -52,13 +48,13 @@ int	copy_lines_to_matrix(char **map_matrix, char **lines, int map_rows,
 		map_matrix[i] = ft_strdup(lines[i]);
 		if (!map_matrix[i])
 		{
-			ft_printf("duplicate_lines: failed at row %d\n", i);
+			ft_printf("Error: Memory allocation failed at row %d\n", i);
 			free_matrix(map_matrix, i);
-			free(map->matrix);
 			return (0);
 		}
 		i++;
 	}
+	map_matrix[map_rows] = NULL;
 	return (1);
 }
 
@@ -68,18 +64,21 @@ int	set_map_data(t_map *map, char **lines)
 	int		map_rows;
 
 	if (!lines || !lines[0])
+	{
+		ft_printf("Error: Invalid map data\n");
 		return (0);
-	if (!allocate_lines(&map_matrix, lines, &map_rows))
-		ft_printf("Error: Memory allocation failed\n");
-	if (!copy_lines_to_matrix(map_matrix, lines, map_rows, map))
+	}
+	map_rows = count_lines(lines);
+	if (!allocate_matrix(&map_matrix, map_rows))
 		return (0);
-	map_matrix[map_rows] = NULL;
+	if (!copy_lines_to_matrix(map_matrix, lines, map_rows))
+	{
+		free(map_matrix);
+		return (0);
+	}
 	free(map->matrix);
 	map->matrix = map_matrix;
 	map->rows = map_rows;
-	if (map_matrix[0] != NULL)
-		map->cols = ft_strlen(map_matrix[0]);
-	else
-		map->cols = 0;
+	map->cols = ft_strlen(lines[0]);
 	return (1);
 }

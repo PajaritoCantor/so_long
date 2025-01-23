@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 23:05:59 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/15 19:53:40 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/22 02:20:56 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ bool	find_start_point(t_map *map)
 
 void	flood_fill(t_map *map, int x, int y)
 {
-	if (map->matrix[y][x] == '1' || map->matrix[y][x] == 'F'
-		|| map->matrix[y][x] == 'X')
+	if (map->matrix[y][x] == '1' || map->matrix[y][x] == 'F')
 		return ;
 	map->matrix[y][x] = 'F';
 	flood_fill(map, x - 1, y);

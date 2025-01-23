@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 01:32:30 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/21 18:48:26 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/22 05:32:45 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,16 @@ int	allocate_matrix(char ***map_matrix, int map_rows)
 {
 	if (map_rows <= 0)
 	{
-		ft_printf("Error: invalid number of rows: %d\n", map_rows);
+		ft_printf("Error: Map dimensions are invalid\n");
 		return (0);
 	}
 	*map_matrix = ft_calloc(map_rows + 1, sizeof(char *));
-	return (*map_matrix != NULL);
+	if (!*map_matrix)
+	{
+		ft_printf("Error: Memory allocation for matrix failed\n");
+		return (0);
+	}
+	return (1);
 }
 
 int	allocate_lines(char ***map_matrix, char **lines, int *map_rows)

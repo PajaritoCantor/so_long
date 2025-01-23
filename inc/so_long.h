@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/21 19:52:38 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/22 05:19:00 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define COLLECTIBLE_TEXTURE "./textures/collectible.xpm42"
 # define EXIT_TEXTURE "./textures/exit.xpm42"
 # define TILE_SIZE 32
+# define MAX_MAP_AREA 2000
 
 # define WALL '1'
 # define EMPTY '0'
@@ -110,6 +111,12 @@ typedef struct s_window
 	int			win_height;
 }				t_window;
 
+typedef struct s_point
+{
+	int			x;
+	int			y;
+}				t_point;
+
 typedef struct s_game
 {
 	t_window	*window;
@@ -123,12 +130,14 @@ t_map			*read_map(char *file_path);
 t_map			*init_map(void);
 char			*read_all_lines(char *file_path);
 int				open_file(char *file_path);
+int				validate_map_dimensions(char **lines, int *rows, int *cols);
+t_map			*initialize_map_with_validation(char *file_path, char ***lines);
 int				set_map_data(t_map *map, char **lines);
 int				allocate_lines(char ***matrix, char **lines, int *rows);
 int				count_lines(char **lines);
 int				allocate_matrix(char ***matrix, int rows);
-int				copy_lines_to_matrix(char **matrix, char **lines, int rows,
-					t_map *map);
+int				copy_lines_to_matrix(char **map_matrix, char **lines,
+					int map_rows);
 int				validate_map(t_map *map);
 void			count_essential_characters(t_map *map, int *essentials);
 int				check_valid_characters(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/21 19:51:57 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/22 05:35:20 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define EXIT_TEXTURE "./textures/exit.xpm42"
 # define ENEMY_TEXTURE "./textures/enemy.xpm42"
 # define TILE_SIZE 32
+# define MAX_MAP_AREA 2000
 
 # define WALL '1'
 # define EMPTY '0'

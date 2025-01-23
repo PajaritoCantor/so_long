@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 14:49:34 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/18 15:06:48 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/21 22:35:48 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ int	check_valid_characters(t_map *map)
 		while (col < map->cols)
 		{
 			c = map->matrix[row][col];
-			if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C'
-				&& c != 'X')
+			if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
 				return (0);
 			col++;
 		}

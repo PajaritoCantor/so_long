@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 01:59:42 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/15 19:57:35 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/22 01:20:06 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ char	**copy_map_matrix(t_map *map)
 		if (!copy[y])
 		{
 			while (--y >= 0)
-				(freedom(NULL, (void *)&copy[y]), free(copy));
+				free(copy[y]);
+			free(copy);
+			return (NULL);
 		}
 		y++;
 	}
