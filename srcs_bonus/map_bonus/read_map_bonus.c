@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 00:08:36 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/22 05:31:14 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/23 01:27:45 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,11 @@ t_map	*read_map(char *file_path)
 	if (!map)
 		return (NULL);
 	if (!validate_map_dimensions(lines, &rows, &cols))
-	{
-		ft_free_strs(lines);
-		return (free_map(map), NULL);
-	}
+		return (ft_free_strs(lines), free_map(map), NULL);
 	if (!set_map_data(map, lines))
-	{
-		ft_free_strs(lines);
-		return (free_map(map), NULL);
-	}
+		return (ft_free_strs(lines), free_map(map), NULL);
+	if (!validate_map(map))
+		return (ft_free_strs(lines), free_map(map), NULL);
 	ft_free_strs(lines);
 	return (map);
 }
