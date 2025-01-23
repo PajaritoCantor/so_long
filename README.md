@@ -1,12 +1,15 @@
 # SO_LONG
  **Orden de desarrollo de funciones**
 
-1. **Leer el archivo .ber:** // Usar gnl propio
-* **read_map():** Leer el archivo y guardarlo en un array 2D.
-*  **validate map():** Validar la estructura del mapa (rectangular, cerrado, etc.)
+1. **Leer el archivo .ber** 
+* **init_map** Inicializar la struct del mapa.
+* **read_all_lines** Leer el archivo y guardarlo en un array 2D. Usar get_next_line. Luego usar split. 
+*  **set_map_data** Alocar memoria para la matrix del mapa e introducir los elementos del mapa dentro de dicha matrix.
+*  **validate map** Validar la estructura del mapa (rectangular, cerrado, caracteres)
+*  **validate_path** Ubicar la posición del player, hacer una copia del mapa y utilizar **flood_fill** para verificar que el mapa es válido, es decir, para cerciorarse que el jugador puede recoger todos los coleccionables y acceder al exit sin problema.
 
 2. **Inicialización de gráficos:**
-* **init_game():** Inicializa la ventana, carga texturas y muestra la pantalla inicial.
+* **init_game** Es la función principal donde se irá alocando memoria para cada elemento del juego (window, textures, player). Se inicializa la ventana, se cargan las texturas, se convierten a instancias de imagen.
 * **render_map():** Renderiza los elementos del mapa en la ventana.
 
 3. **Control de movimiento:**
