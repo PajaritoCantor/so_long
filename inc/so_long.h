@@ -6,7 +6,7 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 21:09:20 by jurodrig          #+#    #+#             */
-/*   Updated: 2025/01/22 05:19:00 by jurodrig         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:39:44 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <stdlib.h>
 # include <string.h>
 
+# define TILE_SIZE 32
+# define MAX_MAP_AREA 2000
+
 # define USAGE "\nUsage:./so_long [map.ber]"
 # define ERROR_MAP "\nInvalid map"
 # define ERROR_MAP_FILE_EXTENSION "\nInvalid map file extension.\n"
@@ -36,9 +39,6 @@
 # define ERROR_CONVERT_TEXTURES "missing textures\n"
 # define ERROR_ASSIGN_TEXTURES "assigning textures\n"
 # define ERROR_WINDOW "creating window"
-# define SUCCESS "\033[1;32m✅ Success: Funtion finished well!\n\033[0m"
-# define ERROR "\033[1;31m❌ Error: Error in function!\n\033[0m"
-# define WARNING "\033[1;33m⚠️ Warning: Warning in function!\n\033[0m"
 
 # define WALL_TEXTURE "./textures/wall.xpm42"
 # define FLOOR_TEXTURE "./textures/floor.xpm42"
@@ -51,8 +51,6 @@
 # define PLAYER_RIGHT_TEXTURE_3 "./textures/player_walk_right_3.xpm42"
 # define COLLECTIBLE_TEXTURE "./textures/collectible.xpm42"
 # define EXIT_TEXTURE "./textures/exit.xpm42"
-# define TILE_SIZE 32
-# define MAX_MAP_AREA 2000
 
 # define WALL '1'
 # define EMPTY '0'
@@ -60,20 +58,10 @@
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
 
-typedef enum e_direction
-{
-	STILL,
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-}				t_direction;
-
 typedef struct s_position
 {
 	int			position_x;
 	int			position_y;
-	t_direction	facing;
 	int			collected;
 	int			is_jumping;
 	int			velocity_y;
@@ -123,7 +111,6 @@ typedef struct s_game
 	t_map		*map;
 	t_textures	*textures;
 	t_position	*player;
-	int			gravity_timer;
 }				t_game;
 
 t_map			*read_map(char *file_path);
